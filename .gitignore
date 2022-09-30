@@ -1,3 +1,4 @@
 /repository/
 /repository/libb2/
-/results/
+/results/*
+/log/*
