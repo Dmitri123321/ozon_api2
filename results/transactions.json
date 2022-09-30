@@ -1,0 +1,4201 @@
+[
+    {
+        "operation_id": 2322939428,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1478.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 04:34:10",
+            "posting_number": "61817555-0013-5",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2323009824,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 04:34:10",
+            "posting_number": "61817555-0013-5",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2323102740,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1478.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 12:55:02",
+            "posting_number": "32995056-0133-4",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355833
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2323159986,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 12:55:02",
+            "posting_number": "32995056-0133-4",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355833
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2323166409,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 11:12:54",
+            "posting_number": "61769573-0008-3",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2323180499,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 03:58:05",
+            "posting_number": "45546901-0108-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2323157725,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1478.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 11:12:54",
+            "posting_number": "61769573-0008-3",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2323212362,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -76.84,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 11:12:54",
+            "posting_number": "61769573-0008-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541351866
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -76.84
+            }
+        ]
+    },
+    {
+        "operation_id": 2323215697,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 08:10:56",
+            "posting_number": "50619575-0032-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2323193185,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1490.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 03:58:05",
+            "posting_number": "45546901-0108-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -78
+            }
+        ]
+    },
+    {
+        "operation_id": 2323192103,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1921,
+        "sale_commission": -153.68,
+        "amount": 1581.27,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 11:12:54",
+            "posting_number": "61769573-0008-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541351866
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -96.05
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2323199192,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1478.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 08:10:56",
+            "posting_number": "50619575-0032-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2323261562,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -60,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 06:35:24",
+            "posting_number": "41935333-0113-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541345187
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2323299437,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1721,
+        "sale_commission": -137.68,
+        "amount": 1419.27,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 13:59:07",
+            "posting_number": "06877274-0005-4",
+            "warehouse_id": 18044494830000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 642227609
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -86.05
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -78
+            }
+        ]
+    },
+    {
+        "operation_id": 2323323085,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 06:45:49",
+            "posting_number": "67714401-0077-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533183365
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2323335610,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 06:45:49",
+            "posting_number": "67714401-0077-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533183365
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2323347922,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -68.84,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 13:59:07",
+            "posting_number": "06877274-0005-4",
+            "warehouse_id": 18044494830000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 642227609
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -68.84
+            }
+        ]
+    },
+    {
+        "operation_id": 2323445687,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1994,
+        "sale_commission": 142.57,
+        "amount": -1851.43,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-07 07:00:07",
+            "posting_number": "44703354-0060-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 642223902
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2323447636,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 06:35:24",
+            "posting_number": "41935333-0113-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541345187
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnPartGoodsCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2324328809,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1921,
+        "sale_commission": -137.35,
+        "amount": 1609.6,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-15 14:12:42",
+            "posting_number": "44057950-0108-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541350060
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -96.05
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -78
+            }
+        ]
+    },
+    {
+        "operation_id": 2324384827,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -76.84,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-15 14:12:42",
+            "posting_number": "44057950-0108-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541350060
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -76.84
+            }
+        ]
+    },
+    {
+        "operation_id": 2324515278,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 13:59:19",
+            "posting_number": "73616163-0019-1",
+            "warehouse_id": 17717042026000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533212066
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2324514627,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 05:32:36",
+            "posting_number": "44595169-0282-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533212066
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2324554450,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 13:59:19",
+            "posting_number": "73616163-0019-1",
+            "warehouse_id": 17717042026000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533212066
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2324596133,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 05:32:36",
+            "posting_number": "44595169-0282-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533212066
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2324629134,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1921,
+        "sale_commission": 153.68,
+        "amount": -1767.32,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 11:12:54",
+            "posting_number": "61769573-0008-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541351866
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2324665831,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1803,
+        "sale_commission": 144.24,
+        "amount": -1658.76,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 11:12:54",
+            "posting_number": "61769573-0008-3",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2320314116,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1508.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 06:44:53",
+            "posting_number": "74775051-0006-1",
+            "warehouse_id": 17717042026000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2320345473,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 06:44:53",
+            "posting_number": "74775051-0006-1",
+            "warehouse_id": 17717042026000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2324810331,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 05:30:43",
+            "posting_number": "48301787-0068-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541341602
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2324813381,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1508.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 05:30:43",
+            "posting_number": "48301787-0068-5",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2320922108,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -60,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-19 10:28:26",
+            "posting_number": "73096915-0042-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541344226
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2320944647,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-19 10:28:26",
+            "posting_number": "73096915-0042-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541344226
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnPartGoodsCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2320955142,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 18:25:39",
+            "posting_number": "52322471-0179-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355081
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2320945382,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 18:25:39",
+            "posting_number": "52322471-0179-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355081
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2325005520,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 05:30:43",
+            "posting_number": "48301787-0068-5",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2325020856,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 05:30:43",
+            "posting_number": "48301787-0068-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541341602
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2325038739,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1921,
+        "sale_commission": -153.68,
+        "amount": 1611.27,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 07:21:31",
+            "posting_number": "20714721-0040-2",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533185792
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -96.05
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2321425894,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 06:06:08",
+            "posting_number": "73056880-0017-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533212066
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2321497362,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 06:06:08",
+            "posting_number": "73056880-0017-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533212066
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2321495913,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1881,
+        "sale_commission": 134.49,
+        "amount": -1746.51,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-14 14:25:05",
+            "posting_number": "45750363-0151-7",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533185792
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2321495916,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1881,
+        "sale_commission": 134.49,
+        "amount": -1746.51,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-14 14:25:05",
+            "posting_number": "45750363-0151-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355081
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2321809333,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -2092,
+        "sale_commission": 167.36,
+        "amount": -1924.64,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 18:05:22",
+            "posting_number": "04308357-0200-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541352646
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2322141378,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1921,
+        "sale_commission": -153.68,
+        "amount": 1593.27,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 01:36:16",
+            "posting_number": "92300710-0091-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541344226
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -96.05
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -78
+            }
+        ]
+    },
+    {
+        "operation_id": 2322173317,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -76.84,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 01:36:16",
+            "posting_number": "92300710-0091-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541344226
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -76.84
+            }
+        ]
+    },
+    {
+        "operation_id": 2322177391,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1921,
+        "sale_commission": -153.68,
+        "amount": 1581.27,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 01:36:16",
+            "posting_number": "92300710-0091-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 543965243
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -96.05
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2322202492,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -76.84,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 01:36:16",
+            "posting_number": "92300710-0091-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 543965243
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -76.84
+            }
+        ]
+    },
+    {
+        "operation_id": 2325220458,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1921,
+        "sale_commission": 153.68,
+        "amount": -1767.32,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 01:46:46",
+            "posting_number": "41456105-0011-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533180634
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2325251151,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -76.84,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 07:21:31",
+            "posting_number": "20714721-0040-2",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533185792
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -76.84
+            }
+        ]
+    },
+    {
+        "operation_id": 2322484219,
+        "operation_type": "OperationMarketplaceFlexiblePaymentSchedule",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Начисление за гибкий график выплат",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -1174.06,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "",
+            "order_date": "",
+            "posting_number": "",
+            "warehouse_id": 0
+        },
+        "items": [],
+        "services": [],
+        "offer_id_short": null,
+        "product_id": null
+    },
+    {
+        "operation_id": 2325318469,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -2092,
+        "sale_commission": 167.36,
+        "amount": -1924.64,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 01:43:39",
+            "posting_number": "56483427-0048-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541351548
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2325345645,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 11:09:48",
+            "posting_number": "0100414946-0058-1",
+            "warehouse_id": 17717042026000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533180634
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2325419633,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 11:16:24",
+            "posting_number": "06608945-0153-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnAfterDelivToCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2325333003,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 05:45:01",
+            "posting_number": "37183234-0124-1",
+            "warehouse_id": 17717042026000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533182879
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2325656269,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 11:09:48",
+            "posting_number": "0100414946-0058-1",
+            "warehouse_id": 17717042026000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533180634
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2325679154,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 05:45:01",
+            "posting_number": "37183234-0124-1",
+            "warehouse_id": 17717042026000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533182879
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2325413469,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 02:29:03",
+            "posting_number": "28349216-0067-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541345187
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2325768438,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 02:29:03",
+            "posting_number": "28349216-0067-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541345187
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2325923294,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 14:47:53",
+            "posting_number": "95570205-0008-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2325538044,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1508.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 14:47:53",
+            "posting_number": "95570205-0008-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2326048810,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 07:17:07",
+            "posting_number": "47588480-0209-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355081
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2326456701,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -2092,
+        "sale_commission": 167.36,
+        "amount": -1924.64,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 06:37:24",
+            "posting_number": "89940802-0048-9",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533185792
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2326082086,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1478.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 23:45:19",
+            "posting_number": "36918908-0025-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2326556119,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 07:17:07",
+            "posting_number": "47588480-0209-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355081
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2326609573,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 23:45:19",
+            "posting_number": "36918908-0025-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2326646204,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 14:33:58",
+            "posting_number": "29877195-0146-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541351548
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2326908863,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-19 07:41:55",
+            "posting_number": "03405423-0134-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541344226
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnAfterDelivToCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2326987165,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 16:48:20",
+            "posting_number": "41286910-0074-4",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541345187
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2326987020,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 16:48:20",
+            "posting_number": "41286910-0074-11",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181581
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2327057537,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1803,
+        "sale_commission": 144.24,
+        "amount": -1658.76,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 22:13:49",
+            "posting_number": "40299606-0082-2",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2327128523,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 03:54:41",
+            "posting_number": "08426043-0072-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181581
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2327133739,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 14:33:58",
+            "posting_number": "29877195-0146-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541351548
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2327166931,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1921,
+        "sale_commission": 137.35,
+        "amount": -1783.65,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-15 16:21:03",
+            "posting_number": "46295243-0065-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533185792
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2327333572,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 16:48:20",
+            "posting_number": "41286910-0074-4",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541345187
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2327334529,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 16:48:20",
+            "posting_number": "41286910-0074-11",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181581
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2327464315,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1921,
+        "sale_commission": 153.68,
+        "amount": -1767.32,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 10:18:04",
+            "posting_number": "39261869-0061-19",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355081
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2327470673,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1921,
+        "sale_commission": 153.68,
+        "amount": -1767.32,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 10:18:04",
+            "posting_number": "39261869-0061-8",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541348101
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2327477998,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1921,
+        "sale_commission": 153.68,
+        "amount": -1767.32,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 10:18:04",
+            "posting_number": "39261869-0061-15",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533180634
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2327518599,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 03:54:41",
+            "posting_number": "08426043-0072-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181581
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2327931837,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 17:05:08",
+            "posting_number": "88791613-0096-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541352646
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2327934871,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 17:05:08",
+            "posting_number": "88791613-0096-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541352646
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2328086771,
+        "operation_type": "MarketplaceMarketingActionCostOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуги продвижения товаров",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -1000,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "",
+            "order_date": "",
+            "posting_number": "",
+            "warehouse_id": 0
+        },
+        "items": [],
+        "services": [],
+        "offer_id_short": null,
+        "product_id": null
+    },
+    {
+        "operation_id": 2328086880,
+        "operation_type": "MarketplaceMarketingActionCostOperation",
+        "operation_date": "2022-09-26 00:00:00",
+        "operation_type_name": "Услуги продвижения товаров",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -2521.08,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "",
+            "order_date": "",
+            "posting_number": "",
+            "warehouse_id": 0
+        },
+        "items": [],
+        "services": [],
+        "offer_id_short": null,
+        "product_id": null
+    },
+    {
+        "operation_id": 2327969643,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-17 09:49:25",
+            "posting_number": "45740933-0091-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533183365
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnAfterDelivToCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2328100667,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 06:33:38",
+            "posting_number": "30509441-0124-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533212066
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnAfterDelivToCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2328108658,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-19 20:58:06",
+            "posting_number": "10681052-0062-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnAfterDelivToCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2328541025,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 18:42:19",
+            "posting_number": "47174221-0043-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541351548
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2328551346,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-15 13:20:43",
+            "posting_number": "64450682-0116-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 642230641
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnAfterDelivToCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2328555571,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-18 13:16:08",
+            "posting_number": "83920949-0007-3",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355081
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnPartGoodsCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2328331714,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1921,
+        "sale_commission": -153.68,
+        "amount": 1581.27,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 04:03:56",
+            "posting_number": "16109885-0017-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541341602
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -96.05
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2328345883,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -76.84,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 04:03:56",
+            "posting_number": "16109885-0017-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541341602
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -76.84
+            }
+        ]
+    },
+    {
+        "operation_id": 2328530597,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 18:42:19",
+            "posting_number": "47174221-0043-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541351548
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2328753743,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-19 18:04:58",
+            "posting_number": "30578629-0146-3",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541363063
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnPartGoodsCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2328796516,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 05:42:12",
+            "posting_number": "70037526-0023-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533183365
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2328854411,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1730.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 05:42:12",
+            "posting_number": "70037526-0023-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533183365
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2328885341,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 06:29:49",
+            "posting_number": "83342255-0006-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2329321911,
+        "operation_type": "ClientReturnAgentOperation",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Получение возврата, отмены, невыкупа от покупателя",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": -1803,
+        "sale_commission": 144.24,
+        "amount": -1658.76,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 08:10:56",
+            "posting_number": "50619575-0032-2",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": []
+    },
+    {
+        "operation_id": 2329633003,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -76.84,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-19 12:27:16",
+            "posting_number": "46850081-0080-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541344226
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -76.84
+            }
+        ]
+    },
+    {
+        "operation_id": 2328949746,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1508.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 06:29:49",
+            "posting_number": "83342255-0006-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2329810460,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 09:40:00",
+            "posting_number": "42198837-0149-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533212066
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2329811544,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 13:57:44",
+            "posting_number": "28873160-0057-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355081
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2329914884,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1730.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-21 13:57:44",
+            "posting_number": "28873160-0057-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355081
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2329913872,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1730.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-22 09:40:00",
+            "posting_number": "42198837-0149-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533212066
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2330233497,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.6,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 02:08:17",
+            "posting_number": "14155533-0172-2",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541351866
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.6
+            }
+        ]
+    },
+    {
+        "operation_id": 2330536919,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 10:38:07",
+            "posting_number": "0102343533-0039-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533182879
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2330743385,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 10:38:07",
+            "posting_number": "0102343533-0039-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533182879
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2330819527,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -90,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-18 13:16:08",
+            "posting_number": "83920949-0007-3",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541355081
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -90
+            }
+        ]
+    },
+    {
+        "operation_id": 2329712200,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1921,
+        "sale_commission": -153.68,
+        "amount": 1593.27,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-19 12:27:16",
+            "posting_number": "46850081-0080-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541344226
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -96.05
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -78
+            }
+        ]
+    },
+    {
+        "operation_id": 2331040678,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -60,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-19 18:04:58",
+            "posting_number": "30578629-0146-3",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541363063
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2330340798,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2090,
+        "sale_commission": -167.2,
+        "amount": 1758.3,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-24 02:08:17",
+            "posting_number": "14155533-0172-2",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 541351866
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.5
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2331302364,
+        "operation_type": "OperationItemReturn",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка и обработка возврата, отмены, невыкупа",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -92,
+        "type": "returns",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 06:37:24",
+            "posting_number": "89940802-0048-9",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533185792
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemReturnAfterDelivToCustomer",
+                "price": -50
+            },
+            {
+                "name": "MarketplaceServiceItemReturnFlowLogistic",
+                "price": -42
+            }
+        ]
+    },
+    {
+        "operation_id": 2331851752,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 04:41:50",
+            "posting_number": "31831499-0103-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533185792
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2331862946,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 04:41:50",
+            "posting_number": "31831499-0103-1",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533185792
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2332034827,
+        "operation_type": "OperationMarketplaceFlexiblePaymentSchedule",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Начисление за гибкий график выплат",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -271.4,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "",
+            "order_date": "",
+            "posting_number": "",
+            "warehouse_id": 0
+        },
+        "items": [],
+        "services": [],
+        "offer_id_short": null,
+        "product_id": null
+    },
+    {
+        "operation_id": 2331897182,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 05:54:19",
+            "posting_number": "31748152-0364-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 543965243
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2332233112,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 05:54:19",
+            "posting_number": "31748152-0364-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 543965243
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2332272958,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -83.68,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 12:09:09",
+            "posting_number": "65392304-0027-1",
+            "warehouse_id": 18044570445000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533183365
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -83.68
+            }
+        ]
+    },
+    {
+        "operation_id": 2332070889,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1921,
+        "sale_commission": -153.68,
+        "amount": 1611.27,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 04:14:33",
+            "posting_number": "50763563-0014-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533183365
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -96.05
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2332042152,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 2092,
+        "sale_commission": -167.36,
+        "amount": 1760.04,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 12:09:09",
+            "posting_number": "65392304-0027-1",
+            "warehouse_id": 18044570445000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533183365
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -104.6
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -60
+            }
+        ]
+    },
+    {
+        "operation_id": 2332347831,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -168.15,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-25 05:41:37",
+            "posting_number": "30992557-0020-2",
+            "warehouse_id": 18044249781000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533190387
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -78
+            }
+        ]
+    },
+    {
+        "operation_id": 2332381247,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -76.84,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-20 04:14:33",
+            "posting_number": "50763563-0014-1",
+            "warehouse_id": 15431806189000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533183365
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -76.84
+            }
+        ]
+    },
+    {
+        "operation_id": 2332382352,
+        "operation_type": "OperationMarketplaceServicePremiumPromotion",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Услуга продвижения Premium",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 0,
+        "sale_commission": 0,
+        "amount": -72.12,
+        "type": "services",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 17:57:06",
+            "posting_number": "0107237309-0008-2",
+            "warehouse_id": 18044494830000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServicePremiumPromotion",
+                "price": -72.12
+            }
+        ]
+    },
+    {
+        "operation_id": 2332070973,
+        "operation_type": "OperationAgentDeliveredToCustomer",
+        "operation_date": "2022-09-27 00:00:00",
+        "operation_type_name": "Доставка покупателю",
+        "delivery_charge": 0,
+        "return_delivery_charge": 0,
+        "accruals_for_sale": 1803,
+        "sale_commission": -144.24,
+        "amount": 1490.61,
+        "type": "orders",
+        "posting": {
+            "delivery_schema": "FBO",
+            "order_date": "2022-09-23 17:57:06",
+            "posting_number": "0107237309-0008-2",
+            "warehouse_id": 18044494830000
+        },
+        "items": [
+            {
+                "name": "Джинсы KATEBI",
+                "sku": 533181373
+            }
+        ],
+        "services": [
+            {
+                "name": "MarketplaceServiceItemFulfillment",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDelivToCustomer",
+                "price": -90.15
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowTrans",
+                "price": 0
+            },
+            {
+                "name": "MarketplaceServiceItemDirectFlowLogistic",
+                "price": -78
+            }
+        ]
+    }
+]

@@ -1,0 +1,655 @@
+{
+    "daily_analytics_data": [
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372942,
+            "state": {
+                "ordered_units": 5,
+                "cancellations": 0,
+                "returns": 0,
+                "revenue": 10119,
+                "delivered_units": 0,
+                "date": "2022-09-27T17:04:46.971Z"
+            }
+
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607008,
+            "ordered_units": 3,
+            "cancellations": 0,
+            "returns": 1,
+            "revenue": 5940,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.971Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372933,
+            "ordered_units": 3,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 5940,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.971Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607010,
+            "ordered_units": 2,
+            "cancellations": 0,
+            "returns": 1,
+            "revenue": 3960,
+            "delivered_units": 3,
+            "date": "2022-09-27T17:04:46.971Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372938,
+            "ordered_units": 2,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 4179,
+            "delivered_units": 2,
+            "date": "2022-09-27T17:04:46.971Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372938,
+            "ordered_units": 2,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 3960,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.971Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372932,
+            "ordered_units": 2,
+            "cancellations": 1,
+            "returns": 1,
+            "revenue": 3960,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.971Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607008,
+            "ordered_units": 2,
+            "cancellations": 1,
+            "returns": 0,
+            "revenue": 3960,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607010,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 2,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607013,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607009,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 3,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372939,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 1,
+            "revenue": 1980,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607009,
+            "ordered_units": 1,
+            "cancellations": 2,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372940,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372940,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607013,
+            "ordered_units": 1,
+            "cancellations": 1,
+            "returns": 2,
+            "revenue": 1980,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372933,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607007,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372936,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607014,
+            "ordered_units": 1,
+            "cancellations": 1,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372934,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372934,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 1,
+            "revenue": 1980,
+            "delivered_units": 2,
+            "date": "2022-09-27T17:04:46.972Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607014,
+            "ordered_units": 1,
+            "cancellations": 1,
+            "returns": 2,
+            "revenue": 1980,
+            "delivered_units": 5,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607007,
+            "ordered_units": 1,
+            "cancellations": 1,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 3,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607012,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372928,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607012,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 2,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372929,
+            "ordered_units": 1,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 1980,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372937,
+            "ordered_units": 1,
+            "cancellations": 1,
+            "returns": 0,
+            "revenue": 2199,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908504,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372929,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372935,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908509,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908509,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372935,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372941,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372941,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372932,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.973Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372936,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908508,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908508,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372931,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372931,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 373119599,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 373119597,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372939,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372942,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372930,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372930,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 1,
+            "revenue": 0,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 373119593,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908505,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908506,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908505,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 373119598,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.974Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607011,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.975Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 253607011,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.975Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 373119600,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.975Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 373119600,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.975Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908503,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.975Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908503,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.975Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908506,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.975Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372928,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.975Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-6012",
+            "product_id": 322908504,
+            "ordered_units": 0,
+            "cancellations": 1,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 0,
+            "date": "2022-09-27T17:04:46.975Z"
+        },
+        {
+            "offer_id_short": "2KTB-JNS-K338",
+            "product_id": 258372937,
+            "ordered_units": 0,
+            "cancellations": 0,
+            "returns": 0,
+            "revenue": 0,
+            "delivered_units": 1,
+            "date": "2022-09-27T17:04:46.975Z"
+        }
+    ]
+}

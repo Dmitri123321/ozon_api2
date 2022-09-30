@@ -1,0 +1,2 @@
+2022-09-28 18:33:37 DEBUG    mongo_base: mongodb://127.0.0.1:27017, enable_ssl: False
+2022-09-28 18:59:41 DEBUG    mysql: {'host': '194.87.112.103', 'database': 'wb', 'user': 'wbuser', 'password': 'wbpassword', 'port': 9000}, enable_ssl: False

@@ -1,0 +1,12 @@
+2022-09-28 18:33:37 INFO     logger enabled and writes 2022-09-28 
+2022-09-28 18:33:37 INFO     try to load config 
+2022-09-28 18:33:37 INFO     config.json loaded 
+2022-09-28 18:33:37 INFO     config has been loaded 
+2022-09-28 18:33:37 INFO     version: 0.1 
+2022-09-28 18:33:37 INFO     try connect to mongo 
+2022-09-28 18:33:37 INFO     my local base will be used 
+2022-09-28 18:33:37 INFO     mongo connection established 
+2022-09-28 18:33:37 INFO     try connect to endpoint 
+2022-09-28 18:59:29 INFO     global mysql base will be used 
+2022-09-28 18:59:49 INFO     mysql connection established 
+2022-09-28 19:00:03 INFO     load app finished, starting.... 
