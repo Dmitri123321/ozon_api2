@@ -1,12 +1,26 @@
-2022-09-28 18:33:37 INFO     logger enabled and writes 2022-09-28 
-2022-09-28 18:33:37 INFO     try to load config 
-2022-09-28 18:33:37 INFO     config.json loaded 
-2022-09-28 18:33:37 INFO     config has been loaded 
-2022-09-28 18:33:37 INFO     version: 0.1 
-2022-09-28 18:33:37 INFO     try connect to mongo 
-2022-09-28 18:33:37 INFO     my local base will be used 
-2022-09-28 18:33:37 INFO     mongo connection established 
-2022-09-28 18:33:37 INFO     try connect to endpoint 
-2022-09-28 18:59:29 INFO     global mysql base will be used 
-2022-09-28 18:59:49 INFO     mysql connection established 
-2022-09-28 19:00:03 INFO     load app finished, starting.... 
+2022-09-30 20:21:46 INFO     logger enabled and writes 2022-09-30 
+2022-09-30 20:21:46 INFO     try to load config 
+2022-09-30 20:21:46 INFO     config.json loaded 
+2022-09-30 20:21:46 INFO     config has been loaded 
+2022-09-30 20:21:46 INFO     version: 0.1 
+2022-09-30 20:21:46 INFO     try connect to mongo 
+2022-09-30 20:21:46 INFO     my local base will be used 
+2022-09-30 20:21:46 INFO     mongo connection established 
+2022-09-30 20:21:46 INFO     try connect to mysql base 
+2022-09-30 20:21:46 INFO     global mysql base will be used 
+2022-09-30 20:21:46 INFO     mysql connection established 
+2022-09-30 20:21:46 INFO     load app finished, starting.... 
+2022-09-30 20:21:47 INFO     200 https://api-seller.ozon.ru/v2/product/list 
+2022-09-30 20:21:47 INFO     200 https://api-seller.ozon.ru/v2/product/info/list 
+2022-09-30 20:21:47 INFO     200 https://api-seller.ozon.ru/v2/category/tree 
+2022-09-30 20:21:47 INFO     receive items_info and prepare 
+2022-09-30 20:21:47 INFO     200 https://api-seller.ozon.ru/v1/analytics/data 
+2022-09-30 20:21:47 INFO     receive analytics data 
+2022-09-30 20:21:47 INFO     prepare analytics data 
+2022-09-30 20:21:47 INFO     200 https://api-seller.ozon.ru/v3/finance/transaction/list 
+2022-09-30 20:21:47 INFO     receive transaction data 
+2022-09-30 20:21:47 INFO     prepare transaction data 
+2022-09-30 20:21:47 INFO     index already exists product_id 
+2022-09-30 20:21:47 INFO     inserted:True, user_id:None, company_id:None 
+2022-09-30 20:21:47 INFO     inserted:True, user_id:None, company_id:None 
+2022-09-30 20:21:47 INFO     inserted:True, user_id:None, company_id:None 

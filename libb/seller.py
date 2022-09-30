@@ -491,7 +491,7 @@ class Seller:
         return name
 
     def reform_analytics_data(self, analytics_data, products):
-        analytics = {"daily_analytics_data": []}
+        analytics = []
         for analytic_data in analytics_data:
             analytic = {}
             fbs_sku = analytic_data['dimensions'][0]['id']
@@ -506,7 +506,7 @@ class Seller:
             analytic['revenue'] = analytic_data['metrics'][3]
             analytic['delivered_units'] = analytic_data['metrics'][4]
             analytic['date'] = dt.datetime.today().strftime('%Y-%m-%dT%H:%M:%S.%f')[0:23] + 'Z'
-            analytics['daily_analytics_data'].append(analytic)
+            analytics.append(analytic)
         return analytics
 
     def get_transaction_list(self, for_the_days=1):

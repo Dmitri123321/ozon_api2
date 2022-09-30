@@ -8,6 +8,7 @@ from libb.writers import XLSX
 def main(app):
     try:
         companies_data = get_companies_data(app)
+        # companies_data = [{}]
         for company_data in companies_data:
             client_id = company_data.get('ozon_client_id')
             api_key = company_data.get('ozon_api_key')
@@ -15,7 +16,7 @@ def main(app):
             company_id = company_data.get('id')
             if client_id and api_key and user_id and company_id:
                 client = Seller(app, client_id=client_id, api_key=api_key, user_id=user_id, company_id=company_id)
-                client = Seller(app, client_id='406931', api_key='97f6530c-f8f1-4571-96d7-2f19a9b6b16b', user_id=0, company_id=0)
+                # client = Seller(app, client_id='406931', api_key='97f6530c-f8f1-4571-96d7-2f19a9b6b16b', user_id=0, company_id=0)
                 client_items = client.get_items()
                 # pprint(client_items)
                 # print(len(client_items))
@@ -65,11 +66,12 @@ def main(app):
                     pass
                 else:
                     make_index(app)
-                    send_items_transactions(app, transactions)
-                    send_dayly_analitics(app, analytics)
-                    send_prices(app, prices)
-                    send_stocks(app, stocks)
                     send_items(app, reform_json)
+                    insert_many(app, 1, prices, user_id, company_id)
+                    insert_many(app, 2, stocks, user_id, company_id)
+                    insert_many(app, 3, analytics, user_id, company_id)
+                    insert_many(app, 4, transactions, user_id, company_id)
+
             else:
                 app.warn_('check client data with company_id:', company_id)
 

@@ -114,12 +114,13 @@ class App:
             self.info_('check config and try again')
             raise
         if self.config['from'] == 'mysql':
-            self.info_('try connect to endpoint')
+            self.info_('try connect to mysql base')
             self.connection = detect_mysql_base(self)
         else:
             self.info_('chek config "from" and try again')
             raise
         self.lock = None
+        self.cat_ids = {}
         self.info_('load app finished, starting....')
 
     def sms(self, text=None, lang='en', files=None):
@@ -260,7 +261,7 @@ def detect_mongo_base(self):
 
 
 @decorator1
-def detect_mysql_base(self, enable_ssl=False, status=0):
+def detect_mysql_base(self, enable_ssl=False, status=0, connection=None):
     mysql_base = {}
     if self.my_node in self.config['node']:
         try:
@@ -308,9 +309,10 @@ def detect_mysql_base(self, enable_ssl=False, status=0):
             self.info_('no mysql in env')
             status = 1
     self.log_debug.debug(f'mysql: {mysql_base}, enable_ssl: {enable_ssl}')
-    connection = pymysql.connect(host=mysql_base['host'], user=mysql_base['user'], password=mysql_base['password'],
-                                 database=mysql_base['database'], port=mysql_base['port'])
+
     try:
+        connection = pymysql.connect(host=mysql_base['host'], user=mysql_base['user'], password=mysql_base['password'],
+                                     database=mysql_base['database'], port=mysql_base['port'])
         if connection.server_version:
             self.info_('mysql connection established')
         else:
