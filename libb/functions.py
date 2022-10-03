@@ -51,10 +51,11 @@ def send_items_transactions(app, items):
 
 
 def insert_many(app, ind, items, user_id, company_id):
+    bases = ['products', 'prices', 'stocks', 'analytics', 'transaction']
     try:
         result = app.collections_list[ind].insert_many(items, ordered=False)
         d = bool(result.inserted_ids)
-        app.info_(f"inserted:{d}, user_id:{user_id}, company_id:{company_id}")
+        app.info_(f"inserted:{d}, base:{bases[ind]}, user_id:{user_id}, company_id:{company_id}")
     except:
         app.error_(f"user_id:{user_id}, company_id:{company_id}")
 

@@ -71,12 +71,10 @@ def main(app):
                     insert_many(app, 2, stocks, user_id, company_id)
                     insert_many(app, 3, analytics, user_id, company_id)
                     insert_many(app, 4, transactions, user_id, company_id)
-
             else:
                 app.warn_('check client data with company_id:', company_id)
 
-    except Exception as e:
-        print(e)
+    except:
         app.sms(f"{app.config['bot_name'], app.my_node} has been stoped with an error")
         app.sms(files=['info.log', 'warning.log', 'error.log'])
 

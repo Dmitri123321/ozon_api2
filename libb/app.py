@@ -240,8 +240,8 @@ def detect_mongo_base(self):
                 if mongo_base is None:
                     raise Exception
             except:
-                with open(self.config['mongodb']['mongo_base_data'], 'r', encoding='utf-8-sig') as g:
-                    mongo_base = g.read().strip()
+                mongo_base = self.config['mongodb']['mongo_base_data']
+                self.info_('global base adress has been detected')
                 if "mongodb" not in mongo_base:
                     self.error_('mongo adress incorrect')
                     status = 1
@@ -262,51 +262,44 @@ def detect_mongo_base(self):
 
 @decorator1
 def detect_mysql_base(self, enable_ssl=False, status=0, connection=None):
+    def get_adr(adress, s=True):
+        base = {'host': adress['host'],
+                'database': adress['database'],
+                'user': adress['user'],
+                'password': adress['password'],
+                'port': adress['port'],
+                }
+        for key in base:
+            if not base[key]:
+                s = False
+        return base, s
+
     mysql_base = {}
     if self.my_node in self.config['node']:
         try:
-            mysql_base_local = self.config['mysql']['mysql_base_local']
-            mysql_base = {'host': mysql_base_local['host'],
-                          'database': mysql_base_local['database'],
-                          'user': mysql_base_local['user'],
-                          'password': mysql_base_local['password'],
-                          'port': mysql_base_local['port'],
-                          }
-            for key in mysql_base:
-                if not mysql_base[key]:
-                    raise Exception
+            mysql_base, s = get_adr(self.config['mysql']['mysql_base_local'])
+            if not s:
+                raise Exception
             self.info_('my local mysql base will be used')
         except:
-            mysql_base_global = self.config['mysql']['mysql_base_data']
-            mysql_base = {'host': mysql_base_global['host'],
-                          'database': mysql_base_global['database'],
-                          'user': mysql_base_global['user'],
-                          'password': mysql_base_global['password'],
-                          'port': mysql_base_global['port'],
-                          }
-            for key in mysql_base:
-                if not mysql_base[key]:
-                    status = 1
-                    break
+            mysql_base, s = get_adr(self.config['mysql']['mysql_base_global'])
+            if not s:
+                status = 1
             self.info_('global mysql base will be used')
     else:
         try:
-            mysql_base_global = os.getenv('mysql_base')
-            if mysql_base_global is None:
-                raise Exception
-            else:
-                mysql_base_global = mysql_base_global.split(':')
-                mysql_base = {'host': mysql_base_global[0],
-                              'port': mysql_base_global[1],
-                              'user': mysql_base_global[2],
-                              'password': mysql_base_global[3],
-                              'database': mysql_base_global[4],
-                              }
-                for key in mysql_base:
-                    if not mysql_base[key]:
-                        raise
+            try:
+                mysql_base_global = os.getenv('mysql_base')
+                if mysql_base_global is None:
+                    raise Exception
+            except:
+                self.info_('no mysql in env')
+                mysql_base, s = get_adr(self.config['mysql']['mysql_base_global'])
+                if not s:
+                    raise
+                else:
+                    self.info_('global mysql base will be used')
         except:
-            self.info_('no mysql in env')
             status = 1
     self.log_debug.debug(f'mysql: {mysql_base}, enable_ssl: {enable_ssl}')
 
