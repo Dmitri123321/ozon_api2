@@ -55,6 +55,8 @@ def main(app):
                 app.info_('receive transaction data')
                 transactions = client.reform_transaction_list(transactions=transaction_list, products=reform_json)
                 app.info_('prepare transaction data')
+                rating = client.get_rating(reform_json)
+                app.info_('prepare rating data')
                 if app.config['to'] == 'json':
                     app.write_json_all(items=reform_json, file_path='results/items_info.json', abs_path_=app.path)
                     app.write_json_all(items=prices, file_path='results/prices.json', abs_path_=app.path)

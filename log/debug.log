@@ -1,2 +1,0 @@
-2022-10-03 13:02:53 DEBUG    mongo_base: mongodb://databaseAdmin:databaseAdmin123456@194.87.112.103:27017/admin?ssl=false, enable_ssl: False
-2022-10-03 13:02:53 DEBUG    mysql: {'host': '194.87.112.103', 'database': 'wb', 'user': 'wbuser', 'password': 'wbpassword', 'port': 9000}, enable_ssl: False

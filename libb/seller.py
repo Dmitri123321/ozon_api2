@@ -253,7 +253,7 @@ class Seller:
         items_info = []
         item_product_ids = [item.get('product_id') for item in items_list]
         n = 1000
-        item_product_ids_part = [item_product_ids[i: i+n] for i in range(0, len(item_product_ids), n)]
+        item_product_ids_part = [item_product_ids[i: i + n] for i in range(0, len(item_product_ids), n)]
         for part in item_product_ids_part:
             data = {
                 "offer_id": [],
@@ -549,6 +549,22 @@ class Seller:
                 transaction['offer_id_short'] = None
                 transaction['product_id'] = None
         return transactions
+
+    def get_rating(self, reform_json):
+        url = 'https://api-seller.ozon.ru/v1/product/rating-by-sku'
+        ratings = []
+        ids = [item['product_id'] for item in reform_json]
+        data = {
+            "skus": ids
+        }
+        res, status_code = connect(url, self.headers, data)
+        if status_code:
+            self.app.info_(status_code, url)
+        else:
+            self.app.error_(url, self.headers, data)
+            self.app.stop()
+        ratings = res.json()['products']
+        return ratings
 
 
 # json_writer = JSON_()
