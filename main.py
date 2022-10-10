@@ -55,7 +55,7 @@ def main(app):
                 app.info_('receive transaction data')
                 transactions = client.reform_transaction_list(transactions=transaction_list, products=reform_json)
                 app.info_('prepare transaction data')
-                rating = client.get_rating(reform_json)
+                ratings = client.get_rating(reform_json)
                 app.info_('prepare rating data')
                 if app.config['to'] == 'json':
                     app.write_json_all(items=reform_json, file_path='results/items_info.json', abs_path_=app.path)
@@ -68,11 +68,12 @@ def main(app):
                     pass
                 else:
                     make_index(app)
-                    send_items(app, reform_json)
+                    send_items(app, 0, reform_json, user_id, company_id)
                     insert_many(app, 1, prices, user_id, company_id)
                     insert_many(app, 2, stocks, user_id, company_id)
                     insert_many(app, 3, analytics, user_id, company_id)
                     insert_many(app, 4, transactions, user_id, company_id)
+                    send_items(app, 5, ratings, user_id, company_id)
             else:
                 app.warn_('check client data with company_id:', company_id)
 

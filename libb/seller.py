@@ -564,6 +564,8 @@ class Seller:
             self.app.error_(url, self.headers, data)
             self.app.stop()
         ratings = res.json()['products']
+        for rating in ratings:
+            rating['product_id'] = rating.pop('sku')
         return ratings
 
 
@@ -577,6 +579,7 @@ class Seller:
 def connect(url, headers, data, attempt=1, res=None, status_code=0):
     while attempt < 5:
         try:
+            time.sleep(2)
             body = json.dumps(data)
             res = requests.post(url=url, headers=headers, data=body)
             status_code = res.status_code

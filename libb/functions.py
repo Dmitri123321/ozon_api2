@@ -14,29 +14,28 @@ def make_index(app):
                     pass
         return result
 
-    # indexes_list = ['product_id', 'product_id', 'product_id', 'date', 'operation_id']
-    indexes_list = ['product_id']
-    app.collections_list = [app.collection_products, app.collection_prices, app.collection_stocks,
-                        app.collection_analytics, app.collection_transaction]
+    indexes_list = ['product_id', 'product_id', 'product_id', 'date', 'operation_id', 'product_id']
     for ind, index in enumerate(indexes_list):
+        if ind  not in [0, 5]:
+            continue
         indexes = app.collections_list[ind].index_information()
         if not check_index(indexes, index):
             app.collections_list[ind].create_index(index, unique=True)
-            app.info_('index was created', index)
+            app.info_(f'index >> {index} was created')
         else:
-            app.info_('index already exists', index)
+            app.info_(f'index >> {index} already exists')
 
 
-def send_items(app, items):
+def send_items(app, ind, items, user_id, company_id):
     for item in items:
         try:
-            result = app.collection_products.update_one({'product_id': item['product_id']}, {'$set': item}, upsert=True)
+            result = app.collections_list[ind].update_one({'product_id': item['product_id']}, {'$set': item}, upsert=True)
             a = result.raw_result['updatedExisting']
             b = bool(result.modified_count)
             c = 'upserted' in result.raw_result
             app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, product_id:{item['product_id']}")
         except:
-            app.error_('product_id:', item['product_id'])
+            app.error_(f"'product_id:'{item['product_id']}, user_id:{user_id}, company_id:{company_id}")
 
 
 def send_items_transactions(app, items):

@@ -108,6 +108,10 @@ class App:
             self.collection_stocks = cluster.OzonData.stocks
             self.collection_analytics = cluster.OzonData.analytics
             self.collection_transaction = cluster.OzonData.transaction
+            self.collection_rating = cluster.OzonData.rating
+            self.collections_list = [self.collection_products, self.collection_prices,
+                                     self.collection_stocks, self.collection_analytics,
+                                     self.collection_transaction, self.collection_rating]
         elif self.config['to'] == 'json':
             pass
         else:

@@ -1,6 +1,6 @@
 /repository/
 /repository/libb2/
-/results/*
 /log/error.log
 /log/info.log
 /log/warning.log
+/log/debug.log
