@@ -63,6 +63,7 @@ def main(app):
                     app.write_json_all(items=stocks, file_path='results/stocks.json', abs_path_=app.path)
                     app.write_json_all(items=analytics, file_path='results/daily_analytics.json', abs_path_=app.path)
                     app.write_json_all(items=transactions, file_path='results/transactions.json', abs_path_=app.path)
+                    app.write_json_all(items=ratings, file_path='results/ratings.json', abs_path_=app.path)
                 elif app.config['to'] == 'xlsx':
                     writer = XLSX()
                     pass

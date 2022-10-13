@@ -4,3 +4,9 @@
 /log/info.log
 /log/warning.log
 /log/debug.log
+/results/daily_analytics.json
+/results/items_info.json
+/results/prices.json
+/results/ratings.json
+/results/stocks.json
+/results/transactions.json
