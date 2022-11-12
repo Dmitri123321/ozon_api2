@@ -1,6 +1,6 @@
 from config.config import *
 import json, requests, time
-from repository.Report import Report
+from libb.Report import Report
 
 
 class Client:

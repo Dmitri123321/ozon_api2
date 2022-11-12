@@ -2,8 +2,9 @@ import inspect
 import json
 import logging
 import os
-from datetime import date, timedelta
-
+from datetime import date, timedelta, datetime
+from libb.threated_rabbit import ReconnectingRabbit
+import pika
 import pymysql
 from pymongo import MongoClient
 import sys
@@ -89,6 +90,7 @@ class App:
     def __init__(self):
         self.path = path
         self.today = date.today()
+        self.today_time = datetime.today()
         check_log_folder(folder='log')
         self.log_error = logger(name='error', mode='w')
         self.log_debug = logger(name='debug', mode='w')
@@ -98,8 +100,10 @@ class App:
         self.info_('try to load config')
         self.config = load_config(self)
         self.info_('config has been loaded')
-        self.info_(f'version: {self.config["version"]}')
+        self.info_(f'bot name: {self.config["bot_name"]} version: {self.config["version"]}')
         self.my_node = get_my_node()
+        self.properties = pika.BasicProperties(headers={'id': self.config['rabbit']['header']})
+        self.lock = None
         if self.config['to'] == 'mongo':
             self.info_('try connect to mongo')
             cluster = detect_mongo_base(self)
@@ -120,10 +124,11 @@ class App:
         if self.config['from'] == 'mysql':
             self.info_('try connect to mysql base')
             self.connection = detect_mysql_base(self)
+        elif self.config['from'] == 'none':
+            pass
         else:
             self.info_('chek config "from" and try again')
             raise
-        self.lock = None
         self.cat_ids = {}
         self.info_('load app finished, starting....')
 
@@ -253,7 +258,7 @@ def detect_mongo_base(self):
             mongo_base = None
     if '27017' not in mongo_base:
         enable_ssl = True
-    self.log_debug.debug(f'mongo_base: {mongo_base}, enable_ssl: {enable_ssl}')
+    self.info_(f'mongo_base: {mongo_base}, enable_ssl: {enable_ssl}')
     cluster = MongoClient(mongo_base, tls=enable_ssl, tlsAllowInvalidCertificates=True)
     try:
         cluster.server_info()
@@ -266,7 +271,7 @@ def detect_mongo_base(self):
 
 @decorator1
 def detect_mysql_base(self, enable_ssl=False, status=0, connection=None):
-    def get_adr(adress, s=True):
+    def get_adr(adress, s1=True):
         base = {'host': adress['host'],
                 'database': adress['database'],
                 'user': adress['user'],
@@ -275,8 +280,8 @@ def detect_mysql_base(self, enable_ssl=False, status=0, connection=None):
                 }
         for key in base:
             if not base[key]:
-                s = False
-        return base, s
+                s1 = False
+        return base, s1
 
     mysql_base = {}
     if self.my_node in self.config['node']:
@@ -305,7 +310,7 @@ def detect_mysql_base(self, enable_ssl=False, status=0, connection=None):
                     self.info_('global mysql base will be used')
         except:
             status = 1
-    self.log_debug.debug(f'mysql: {mysql_base}, enable_ssl: {enable_ssl}')
+    self.info_(f'mysql: {mysql_base}, enable_ssl: {enable_ssl}')
 
     try:
         connection = pymysql.connect(host=mysql_base['host'], user=mysql_base['user'], password=mysql_base['password'],
@@ -319,6 +324,29 @@ def detect_mysql_base(self, enable_ssl=False, status=0, connection=None):
         self.info_('mysql connection failed')
         status = 1
     return connection, status
+
+
+@decorator1
+def connect_rabbit(self, channel=None, status=0):
+    try:
+        try:
+            rabbit = os.getenv('rabbit')
+            parameters = pika.URLParameters(rabbit)
+            connection = pika.BlockingConnection(parameters)
+        except:
+            credentials = pika.PlainCredentials(self.config['rabbit']['login'], self.config['rabbit']['password'])
+            parameters = pika.ConnectionParameters(host=self.config['rabbit']['host'],
+                                                   port=self.config['rabbit']['port'], virtual_host='/',
+                                                   credentials=credentials)
+            connection = pika.BlockingConnection(parameters)
+        channel = connection.channel()
+        channel.queue_declare(queue=self.config['rabbit']['queue'], durable=True)
+        self.info_('rabbit connection established')
+    except:
+        self.error_('rabbit connection failed')
+        status = 1
+    return channel, status
+
 
 
 def logger(name, mode='a'):

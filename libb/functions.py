@@ -1,5 +1,8 @@
-import time
-from datetime import datetime
+import json
+
+import pymongo
+
+bases = ['products', 'prices', 'stocks', 'analytics', 'transaction']
 
 
 def make_index(app):
@@ -14,9 +17,10 @@ def make_index(app):
                     pass
         return result
 
-    indexes_list = ['product_id', 'product_id', 'product_id', 'date', 'operation_id', 'product_id']
+    indexes_list = ['product_id', 'product_id', 'product_id',
+                    [('date', pymongo.ASCENDING), ('product_id', pymongo.ASCENDING)], 'operation_id', 'product_id']
     for ind, index in enumerate(indexes_list):
-        if ind  not in [0, 5]:
+        if ind not in [0, 3, 5]:
             continue
         indexes = app.collections_list[ind].index_information()
         if not check_index(indexes, index):
@@ -50,13 +54,26 @@ def send_items_transactions(app, items):
 
 
 def insert_many(app, ind, items, user_id, company_id):
-    bases = ['products', 'prices', 'stocks', 'analytics', 'transaction']
     try:
         result = app.collections_list[ind].insert_many(items, ordered=False)
         d = bool(result.inserted_ids)
         app.info_(f"inserted:{d}, base:{bases[ind]}, user_id:{user_id}, company_id:{company_id}")
     except:
         app.error_(f"user_id:{user_id}, company_id:{company_id}")
+
+
+def bulk_write(app, ind, items, user_id, company_id):
+    try:
+        list_write = [pymongo.UpdateOne({"date": item['date'], "product_id": item['product_id']},
+                                        {'$set': item},
+                                        upsert=True)
+                      for item in items]
+        result = app.collections_list[ind].bulk_write(list_write)
+        f = True if result.upserted_count == len(items) else False
+        app.info_(f"inserted: {f}, base:{bases[ind]}, user_id:{user_id}, company_id:{company_id}")
+    except:
+        app.error_(f"user_id:{user_id}, company_id:{company_id}")
+        pass
 
 
 def send_stocks(app, items):
@@ -102,3 +119,9 @@ def send_prices(app, items):
             app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, product_id:{item['product_id']}")
         except:
             app.error_('product_id:', item['product_id'])
+
+
+def send1(app):
+    data1 = {'a': 'fsgfsdjfgsjd'}
+    result = app.channel.basic_publish(exchange='', routing_key=app.config['rabbit']['routing_key'],
+                                       properties=app.properties1, body=json.dumps(data1).encode())
