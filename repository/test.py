@@ -38,9 +38,14 @@
 #                 pass
 #     return result
 #
-# mongo_base_my_local=  "mongodb://127.0.0.1:27017"
-# cluster = MongoClient(mongo_base_my_local)
-#
+import datetime
+
+import pymongo
+from pymongo import MongoClient
+
+mongo_base_my_local=  "mongodb://127.0.0.1:27017"
+cluster = MongoClient(mongo_base_my_local)
+
 # item = [{
 #             "brand": None,
 #             "user_id": 0,
@@ -316,8 +321,11 @@
 #             print(item['product_id'])
 # send_items(items)
 
-import time
-
-a = time.strftime()
-
-
+collection = cluster.QWQW.re
+# index = [('date', pymongo.ASCENDING), ('product_id', pymongo.ASCENDING)]
+# result = collection.create_index(index, unique=True)
+ti = "2022-10-27 02:56:42.420Z"
+date = datetime.datetime.strptime(ti, "%Y-%m-%d %H:%M:%S.%fZ")
+# date = datetime.datetime.today()
+item = {"date": date, "product_id": 12345, "qw": "qw2"}
+collection.update_one({"date": date, "product_id" : 12345 }, {'$set': item}, upsert=True)

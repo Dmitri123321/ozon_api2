@@ -47,6 +47,6 @@
   },
   "_from": ["mysql", "any_one", "none"],
   "from": "none",
-  "_to": ["mongo", "json, xlsx"],
+  "_to": ["mongo", "json, xlsx", "csv"],
   "to": "mongo"
 }

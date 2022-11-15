@@ -198,6 +198,7 @@ class Rabbit1:
             self._frames_sent = self._connection._impl.frames_sent
         else:
             self.app.warn_('frames_sent not increase')
+        self.app.info_(f'frames sent: {self._frames_sent }, frames received: {self._frames_received}')
         with lock:
             if channel.is_open:
                 self.acknowledge_message(delivery_tag=delivery_tag)

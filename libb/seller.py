@@ -51,7 +51,8 @@ class Seller:
             items.extend(json_data['result'].get('items'))
             if json_data['result'].get('total') < 1000:
                 break
-        return items
+        product_ids = [item.get('product_id') for item in items]
+        return product_ids
 
     def get_prices(self, items_list):
         url = 'https://api-seller.ozon.ru/v2/product/info/list'
@@ -136,7 +137,7 @@ class Seller:
         # pprint(clear_items)
         return clear_items
 
-    def get_analytics(self, metrics, for_the_days=1, mode='raw'):
+    def get_analytics(self, metrics, period, period_step_back, mode='raw'):
         metrics = ["ordered_units", "cancellations", "returns", "revenue", "delivered_units"] if not metrics else metrics
         # metrics = ["hits_view_search", "hits_view_pdp", "hits_view", "hits_tocart_search", "position_category"]
         """
@@ -168,8 +169,8 @@ class Seller:
         """
         url = 'https://api-seller.ozon.ru/v1/analytics/data'
         today = dt.datetime.today()
-        date_to = dt.datetime.strftime(today - dt.timedelta(for_the_days), '%Y-%m-%d')
-        date_from = dt.datetime.strftime(today - dt.timedelta(100), '%Y-%m-%d')
+        date_to = dt.datetime.strftime(today - dt.timedelta(period_step_back), '%Y-%m-%d')
+        date_from = dt.datetime.strftime(today - dt.timedelta(period_step_back + period-1), '%Y-%m-%d')
         """ 
             dimension:
             sku — идентификатор товара,
@@ -226,13 +227,12 @@ class Seller:
         item_info = json_data['result']
         return item_info
 
-    def get_items_info_all(self, items_list):
+    def get_all_products_info(self, product_ids):
         url = 'https://api-seller.ozon.ru/v2/product/info/list'
         items_info = []
-        item_product_ids = [item.get('product_id') for item in items_list]
         n = 1000
-        item_product_ids_part = [item_product_ids[i: i + n] for i in range(0, len(item_product_ids), n)]
-        for part in item_product_ids_part:
+        product_ids_part = [product_ids[i: i + n] for i in range(0, len(product_ids), n)]
+        for part in product_ids_part:
 
             data = {
                 "offer_id": [],
@@ -472,11 +472,11 @@ class Seller:
             analytics.append(analytic)
         return analytics
 
-    def get_transaction_list(self, for_the_days=1, page_count=1, page=1, while_loop=0):
+    def get_transaction_list(self,  period, period_step_back, page_count=1, page=1, while_loop=0):
         """пока не понятно что с периодом , отдает больше чем за 3 месяца"""
         url = 'https://api-seller.ozon.ru/v3/finance/transaction/list'
-        date_to = dt.datetime.strftime(self.app.today - dt.timedelta(for_the_days), '%Y-%m-%dT%H:%M:%S.%f')[0:23] + 'Z'
-        date_from = dt.datetime.strftime(self.app.today - dt.timedelta(for_the_days), '%Y-%m-%dT%H:%M:%S.%fZ')[0:23] + 'Z'
+        date_to = dt.datetime.strftime(self.app.today - dt.timedelta(period_step_back), '%Y-%m-%dT%H:%M:%S.%f')[0:23] + 'Z'
+        date_from = dt.datetime.strftime(self.app.today - dt.timedelta(period_step_back + period-1), '%Y-%m-%dT%H:%M:%S.%fZ')[0:23] + 'Z'
         transaction_list = []
         while page <= page_count:
             while_loop += 1

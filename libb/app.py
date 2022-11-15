@@ -160,7 +160,7 @@ class App:
             file_path = abs_path_ + '/' + file_path
         try:
             with open(file_path, 'w', encoding='utf-8') as file:
-                json.dump(items, file, indent=4, ensure_ascii=False)
+                json.dump(items, file, indent=4, ensure_ascii=False, default=str)
             return True
         except Exception as e:
             if error:
