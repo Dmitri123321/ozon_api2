@@ -3,7 +3,7 @@ import json
 import logging
 import os
 from datetime import date, timedelta, datetime
-from libb.threated_rabbit import ReconnectingRabbit
+# from libb.threated_rabbit import ReconnectingRabbit
 import pika
 import pymysql
 from pymongo import MongoClient
@@ -329,16 +329,15 @@ def detect_mysql_base(self, enable_ssl=False, status=0, connection=None):
 @decorator1
 def connect_rabbit(self, channel=None, status=0):
     try:
-        try:
-            rabbit = os.getenv('rabbit')
+        if rabbit := os.getenv('rabbit'):
             parameters = pika.URLParameters(rabbit)
-            connection = pika.BlockingConnection(parameters)
-        except:
+        else:
             credentials = pika.PlainCredentials(self.config['rabbit']['login'], self.config['rabbit']['password'])
             parameters = pika.ConnectionParameters(host=self.config['rabbit']['host'],
-                                                   port=self.config['rabbit']['port'], virtual_host='/',
+                                                   port=self.config['rabbit']['port'],
+                                                   virtual_host='/',
                                                    credentials=credentials)
-            connection = pika.BlockingConnection(parameters)
+        connection = pika.BlockingConnection(parameters)
         channel = connection.channel()
         channel.queue_declare(queue=self.config['rabbit']['queue'], durable=True)
         self.info_('rabbit connection established')
@@ -346,7 +345,6 @@ def connect_rabbit(self, channel=None, status=0):
         self.error_('rabbit connection failed')
         status = 1
     return channel, status
-
 
 
 def logger(name, mode='a'):

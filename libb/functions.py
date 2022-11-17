@@ -10,7 +10,10 @@ def make_index(app):
         if len(_indexes):
             for key in _indexes:
                 try:
-                    if _index == _indexes[key]['key'][0][0]:
+                    if key.count('1') == 1 and _index == _indexes[key]['key'][0][0]:
+                        result = True
+                        break
+                    elif key.count('1') == 2 and _index == _indexes[key]['key']:
                         result = True
                         break
                 except:

@@ -5,7 +5,6 @@ import threading
 import pika
 
 lock = threading.Lock()
-
 index = 0
 threads = []
 
@@ -186,9 +185,6 @@ class Rabbit1:
         body = args[2].decode()
         current_t = threading.current_thread()
         self.app.info_(f"thread:{current_t}, received mess:{body}")
-        # for i in range(0, 1):
-        #     print('job')
-        #     time.sleep(2)
         self.func(self.app, body)
         if self._frames_received <= self._connection._impl.frames_received:
             self._frames_received = self._connection._impl.frames_received
