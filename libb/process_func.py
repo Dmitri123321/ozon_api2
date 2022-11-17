@@ -4,11 +4,9 @@ from libb.seller import Seller
 
 
 def process(app, data_set):
-    if app.config['test']:
-        try:
-            from config_helper.config_helper import data_set
-        except:
-            app.stop('it is not test mode')
+    # if app.config['test']:
+    #     from config_helper.config_helper import data_set
+
     try:
         analytics, transactions, ratings = [], [], []
         company_data = data_set.get('company_data')
@@ -78,7 +76,6 @@ def process(app, data_set):
                 # writer = CSV()
                 pass
             elif app.config['to'] == 'mongo':
-
                 operations = {0: send_items, 1: insert_many, 2: insert_many, 3: bulk_write, 4: insert_many, 5: send_items}
                 for key in operations.keys():
                     if lists_to_write[key]:
