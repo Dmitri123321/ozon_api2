@@ -108,39 +108,44 @@ class Rabbit:
 class Rabbit1:
     def __init__(self, app, func):
         self.app = app
+        global lock
+        self.app.lock = lock if not self.app.lock else self.app.lock
         self.func = func
         self._connection = None
         self._channel = None
-        self._params = None
         self._consumer_tag = None
         self._frames_received = 0
         self._frames_sent = 0
         self._is_running = False
-        self._durable = self.app.config['rabbit']['durable']
-        if self.app.config['test']:
-            self._adress = 'amqp://admin:123@:5672/%2F?heartbeat=10'
-            self._adress = self.app.config['rabbit']
-            self._queue = 'text2'
-        else:
-            self._adress = os.getenv('rabbit') if os.getenv('rabbit') else self.app.config['rabbit']
-            self._queue = self.app.config['rabbit']['queue']
-        global lock
-        self.app.lock = lock if not self.app.lock else self.app.lock
+        self._durable = True
+        self._params = self.app.params if self.app else None
+        self._queue = self.app.queue if self.app else None
+        if not self._params or not self._queue:
+            if self.app.config:
+                self._adress = 'amqp://admin:123@:5672/%2F?heartbeat=10'
+                self._adress = self.app.config['rabbit']
+                self._queue = self.app.config['rabbit']['queue']
+            else:
+                self._adress = os.getenv('rabbit')
+                self._queue = os.getenv('rabbit_queue')
 
     def connect(self):
-        if type(self._adress) == str and self._adress:
-            if 'heartbeat' in self._adress:
-                self._adress = '{}{}'.format(self._adress.split('?heartbeat=')[0], '?heartbeat=10')
-            self._params = pika.URLParameters(self._adress)
-        elif type(self._adress) == dict and self._adress:
-            credentials = pika.PlainCredentials(self._adress['login'], self._adress['password'])
-            self._params = pika.ConnectionParameters(host=self._adress['host'],
-                                                     port=int(self._adress['port']),
-                                                     virtual_host='/',
-                                                     credentials=credentials,
-                                                     heartbeat=30)
-        else:
-            self.app.stop('no connection data')
+        if not self._params:
+            if self._adress and type(self._adress) == str:
+                if 'heartbeat' in self._adress:
+                    self._adress = '{}{}'.format(self._adress.split('?heartbeat=')[0], '?heartbeat=10')
+                else:
+                    self._adress = '{}{}'.format(self._adress, '?heartbeat=10')
+                self._params = pika.URLParameters(self._adress)
+            elif self._adress and type(self._adress) == dict:
+                credentials = pika.PlainCredentials(self._adress['login'], self._adress['password'])
+                self._params = pika.ConnectionParameters(host=self._adress['host'],
+                                                         port=int(self._adress['port']),
+                                                         virtual_host='/',
+                                                         credentials=credentials,
+                                                         heartbeat=30)
+            else:
+                self.app.stop('no connection data')
         return pika.BlockingConnection(self._params)
 
     def run(self):
@@ -194,7 +199,7 @@ class Rabbit1:
             self._frames_sent = self._connection._impl.frames_sent
         else:
             self.app.warn_('frames_sent not increase')
-        self.app.info_(f'frames sent: {self._frames_sent }, frames received: {self._frames_received}')
+        self.app.info_(f'frames sent: {self._frames_sent}, frames received: {self._frames_received}')
         with lock:
             if channel.is_open:
                 self.acknowledge_message(delivery_tag=delivery_tag)

@@ -4,7 +4,7 @@
   "headers": {
       "user-agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0"
   },
-  "node": "[Z2]",
+  "node": "[Z1]",
   "test": true,
   "telegram": {
       "enable": true,
@@ -13,13 +13,16 @@
       "channel_id": "-1001749223608"
   },
     "rabbit": {
-      "host": "127.0.0.1",
-      "port": "5672",
-      "login": "admin",
-      "password": "123",
-      "header": "test2",
+      "rabbit_dict": {
+        "host": "127.0.0.1",
+        "port": "5672",
+        "login": "admin",
+        "password": "123"
+      },
+      "rabbit_url": "amqp://admin:123@:5672/%2F?heartbeat=10",
+      "durable": true,
       "queue": "test2",
-      "durable": true
+      "header": "test2"
   },
   "endpoint": {
     "host": "http://beta.web3dragon.com/twitter",
@@ -30,16 +33,17 @@
       "mongo_base_my_local": "mongodb://127.0.0.1:27017"
   },
    "mysql": {
+     "local": false,
       "mysql_base_global": {
           "host" : "194.87.112.103",
-          "database" : "wb",
+          "db_name" : "wb",
           "user" : "wbuser",
           "password" : "wbpassword",
           "port" :9000
       },
       "mysql_base_local": {
           "host" : null,
-          "database" : null,
+          "db_name" : null,
           "user" : null,
           "password" : null,
           "port" :null

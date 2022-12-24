@@ -427,6 +427,7 @@ class Seller:
                 else:
                     reform_item[key] = item[key]
             reform_item['product_id'] = reform_item.pop('id')
+            reform_item['price'] = price
             prices.append(price)
             stocks.append(stock)
             reform_json.append(reform_item)
@@ -446,17 +447,26 @@ class Seller:
             self.app.cat_ids[cat_id] = name
         return name
 
-    def reform_analytics_data(self, analytics_data, products_data, company_data):
+    def reform_analytics_data(self, analytics_data, products_data, company_data, prices):
         analytics = []
         for analytic_data in analytics_data:
-            analytic = {}
             fbs_sku = analytic_data['dimensions'][0]['id']
-            analytic['offer_id_short'] = ''
-            analytic['product_id'] = 0
+            analytic = {'offer_id_short': '', 'product_id': 0}
             for product in products_data:
                 if int(fbs_sku) == product['fbo_sku']:
                     analytic['offer_id_short'] = product['offer_id_short']
                     analytic['product_id'] = product['product_id']
+                    analytic['coming'] = product.get('discounted_stocks', {}).get('coming', 0)
+                    analytic['present'] = product.get('discounted_stocks', {}).get('present', 0)
+                    analytic['reserved'] = product.get('discounted_stocks', {}).get('reserved', 0)
+                    analytic['brand'] = product['brand']
+                    analytic['category_name'] = product['category_name']
+                    analytic['name'] = product['name']
+                    analytic['marketing_price'] = product['price']['product_id']
+                    analytic['min_ozon_price'] = product['price']['min_ozon_price']
+                    analytic['old_price'] = product['price']['old_price']
+                    analytic['premium_price'] = product['price']['premium_price']
+                    analytic['price'] = product['price']['price']
                     break
             if not analytic['product_id']:
                 continue
