@@ -23,3 +23,8 @@ transactions: period_step_back - количество дней int, которы
 данная комбинация позволяет взять  информацию за вчера <br>
 если транзакции не нужны то ключ transactions должен отстуствовать или быть False <br>
 если рейтинг не нужен то ключ ratings должен отсутствовать или быть False <br>
+<br>
+подключение: <br>
+mongo: "mongodb://...." <br>
+rabbit: "amqp://..." <br>
+rabbit_queue: "some_queue_name" <br>

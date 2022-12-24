@@ -104,7 +104,7 @@ class App:
         self.info_(f'bot name: {self.bot_name} version: {self.version}')
         self.my_node = get_my_node()
         self.properties = pika.BasicProperties(headers={'id': self.config['rabbit']['header']})
-        [self.params, self.queue] = connect_rabbit(self)
+        self.rabbit_data = connect_rabbit(self)
         self.lock = None
         self.info_('try connect to mongo')
         cluster = detect_mongo_base(self)
@@ -308,7 +308,7 @@ def detect_mysql_base(self, status=0, connection=None, limit=1000):
 
 
 @decorator1
-def connect_rabbit(self, params=None, status=0):
+def connect_rabbit(self, adress=None, queue=None, status=0):
     try:
         if self.config:
             adress = self.config['rabbit']['rabbit_dict']
@@ -323,23 +323,10 @@ def connect_rabbit(self, params=None, status=0):
         if not queue:
             self.error_('no rabbit queue')
             raise
-        if adress and type(adress) == str:
-            if 'heartbeat' in adress:
-                adress = '{}{}'.format(adress.split('?heartbeat=')[0], '?heartbeat=10')
-            else:
-                adress = '{}{}'.format(adress, '?heartbeat=10')
-            params = pika.URLParameters(adress)
-        elif adress and type(adress) == dict:
-            credentials = pika.PlainCredentials(adress['login'], adress['password'])
-            params = pika.ConnectionParameters(host=adress['host'], port=int(adress['port']),
-                                               virtual_host='/', credentials=credentials, heartbeat=30)
-        else:
-            self.error_('no rabbit params')
-            raise
     except:
         self.error_('no rabbit data')
         status = 1
-    return [params, queue], status
+    return [adress, queue], status
 
 
 def logger(name, mode='a'):

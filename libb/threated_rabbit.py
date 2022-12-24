@@ -118,9 +118,10 @@ class Rabbit1:
         self._frames_sent = 0
         self._is_running = False
         self._durable = True
-        self._params = self.app.params if self.app else None
-        self._queue = self.app.queue if self.app else None
-        if not self._params or not self._queue:
+        if self.app:
+            self._adress = self.app.rabbit_data[0]
+            self._queue = self.app.rabbit_data[1]
+        else:
             if self.app.config:
                 self._adress = 'amqp://admin:123@:5672/%2F?heartbeat=10'
                 self._adress = self.app.config['rabbit']
@@ -130,22 +131,22 @@ class Rabbit1:
                 self._queue = os.getenv('rabbit_queue')
 
     def connect(self):
-        if not self._params:
-            if self._adress and type(self._adress) == str:
-                if 'heartbeat' in self._adress:
-                    self._adress = '{}{}'.format(self._adress.split('?heartbeat=')[0], '?heartbeat=10')
-                else:
-                    self._adress = '{}{}'.format(self._adress, '?heartbeat=10')
-                self._params = pika.URLParameters(self._adress)
-            elif self._adress and type(self._adress) == dict:
-                credentials = pika.PlainCredentials(self._adress['login'], self._adress['password'])
-                self._params = pika.ConnectionParameters(host=self._adress['host'],
-                                                         port=int(self._adress['port']),
-                                                         virtual_host='/',
-                                                         credentials=credentials,
-                                                         heartbeat=30)
+        if self._adress and type(self._adress) == str:
+            if 'heartbeat' in self._adress:
+                self._adress = '{}{}'.format(self._adress.split('?heartbeat=')[0], '?heartbeat=10')
             else:
-                self.app.stop('no connection data')
+                self._adress = '{}{}'.format(self._adress, '?heartbeat=10')
+            self._params = pika.URLParameters(self._adress)
+        elif self._adress and type(self._adress) == dict:
+            credentials = pika.PlainCredentials(self._adress['login'], self._adress['password'])
+            self._params = pika.ConnectionParameters(host=self._adress['host'],
+                                                     port=int(self._adress['port']),
+                                                     virtual_host='/',
+                                                     credentials=credentials,
+                                                     heartbeat=30)
+        else:
+            self.app.stop('no connection data')
+            raise
         return pika.BlockingConnection(self._params)
 
     def run(self):
