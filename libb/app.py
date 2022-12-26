@@ -89,7 +89,7 @@ class App:
     def __init__(self):
         self.path = path
         self.today = date.today()
-        self.today_time = datetime.today()
+        self.today_time = datetime.today().replace(minute=0, hour=0, second=0, microsecond=0)
         self.bot_name = 'ozon_api'
         self.version = 0.27
         check_log_folder(folder='log')
