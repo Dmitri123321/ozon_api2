@@ -447,7 +447,7 @@ class Seller:
             self.app.cat_ids[cat_id] = name
         return name
 
-    def reform_analytics_data(self, analytics_data, products_data, company_data, prices):
+    def reform_analytics_data(self, analytics_data, products_data, company_data):
         analytics = []
         for analytic_data in analytics_data:
             fbs_sku = analytic_data['dimensions'][0]['id']

@@ -2,6 +2,8 @@
 import os
 import time
 import threading
+from typing import Union
+
 import pika
 
 lock = threading.Lock()
@@ -43,12 +45,13 @@ class Rabbit:
         self._queue = 'text1'
 
     def connect(self):
+        self._adress: Union[str, dict]
         if type(self._adress) == str:
             self._params = pika.URLParameters(self._adress)
-        else:
-            credentials = pika.PlainCredentials(self._params['login'], self._params['password'])
-            self._params = pika.ConnectionParameters(host=self._params['host'],
-                                                     port=self._params['port'],
+        elif type(self._adress) == dict:
+            credentials = pika.PlainCredentials(self._adress['login'], self._adress['password'])
+            self._params = pika.ConnectionParameters(host=self._adress['host'],
+                                                     port=self._adress['port'],
                                                      virtual_host='/',
                                                      credentials=credentials,
                                                      heartbeat=30)
@@ -118,6 +121,7 @@ class Rabbit1:
         self._frames_sent = 0
         self._is_running = False
         self._durable = True
+        self._params = None
         if self.app:
             self._adress = self.app.rabbit_data[0]
             self._queue = self.app.rabbit_data[1]
@@ -131,6 +135,7 @@ class Rabbit1:
                 self._queue = os.getenv('rabbit_queue')
 
     def connect(self):
+        self._adress: Union[str, dict]
         if self._adress and type(self._adress) == str:
             if 'heartbeat' in self._adress:
                 self._adress = '{}{}'.format(self._adress.split('?heartbeat=')[0], '?heartbeat=10')

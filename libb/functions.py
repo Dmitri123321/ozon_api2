@@ -1,5 +1,3 @@
-import json
-
 import pymongo
 
 bases = ['products', 'prices', 'stocks', 'analytics', 'transaction']
@@ -122,9 +120,3 @@ def send_prices(app, items):
             app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, product_id:{item['product_id']}")
         except:
             app.error_('product_id:', item['product_id'])
-
-
-def send1(app):
-    data1 = {'a': 'fsgfsdjfgsjd'}
-    result = app.channel.basic_publish(exchange='', routing_key=app.config['rabbit']['routing_key'],
-                                       properties=app.properties1, body=json.dumps(data1).encode())

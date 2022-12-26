@@ -117,8 +117,6 @@ class App:
         self.collections_list = [self.collection_products, self.collection_prices,
                                  self.collection_stocks, self.collection_analytics,
                                  self.collection_transaction, self.collection_rating]
-        self.info_('try connect to mysql base')
-        self.connection = detect_mysql_base(self)
         self.cat_ids = {}
         self.info_('load app finished, starting....')
 
@@ -287,23 +285,23 @@ def detect_mysql_base(self, status=0, connection=None, limit=1000):
     else:
         self.info_(f'mysql: {mysql_base}')
     attempt = 1
-    # while attempt < limit:
-    #     attempt += 1
-    #     try:
-    #         connection = pymysql.connect(host=mysql_base['host'], user=mysql_base['user'], password=mysql_base['password'],
-    #                                      database=mysql_base['db_name'], port=mysql_base['port'])
-    #         if connection.server_version:
-    #             self.info_('mysql connection established')
-    #         else:
-    #             raise
-    #         connection.autocommit(True)
-    #         self.mysql_base = mysql_base
-    #         break
-    #     except:
-    #         self.info_('mysql connection failed')
-    #         time.sleep(10)
-    # else:
-    #     status = 1
+    while attempt < limit:
+        attempt += 1
+        try:
+            connection = pymysql.connect(host=mysql_base['host'], user=mysql_base['user'], password=mysql_base['password'],
+                                         database=mysql_base['db_name'], port=mysql_base['port'])
+            if connection.server_version:
+                self.info_('mysql connection established')
+            else:
+                raise
+            connection.autocommit(True)
+            self.mysql_base = mysql_base
+            break
+        except:
+            self.info_('mysql connection failed')
+            time.sleep(10)
+    else:
+        status = 1
     return connection, status
 
 
