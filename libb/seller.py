@@ -137,7 +137,7 @@ class Seller:
         # pprint(clear_items)
         return clear_items
 
-    def get_analytics(self, metrics, period, period_step_back, mode='raw'):
+    def get_analytics(self, metrics, period, period_step_back, count_ids, mode='raw'):
         metrics = ["ordered_units", "cancellations", "returns", "revenue", "delivered_units"] if not metrics else metrics
         # metrics = ["hits_view_search", "hits_view_pdp", "hits_view", "hits_tocart_search", "position_category"]
         """
@@ -186,20 +186,32 @@ class Seller:
             brand — бренд,
             modelID — модель.
         """
-        data = {
-            "date_from": date_from,
-            "date_to": date_to,
-            "metrics": metrics,
-            "filters": [],
-            "dimension": ["sku"],
-            "limit": 1000,
-            "offset": 0
-        }
-
-        json_data = connect1(self, url, self.headers, data)
-        analytisc_data = json_data['result']['data']
-        if mode != 'raw':
-            analytisc_data = self.analytisc_helper(analytisc_data)
+        analytisc_data = []
+        offset = 0
+        attempt = 0
+        len_result = 1000
+        data_limit = 1000
+        limit = count_ids // data_limit + 1
+        while attempt < limit and not len_result < data_limit:
+            attempt += 1
+            try:
+                data = {
+                    "date_from": date_from,
+                    "date_to": date_to,
+                    "metrics": metrics,
+                    "filters": [],
+                    "dimension": ["sku"],
+                    "limit": data_limit,
+                    "offset": offset
+                }
+                json_data = connect1(self, url, self.headers, data)
+                result = json_data['result']['data'] if mode == 'raw' else self.analytisc_helper(json_data['result']['data'])
+                len_result = len(result)
+                analytisc_data += result
+                offset += data_limit
+            except:
+                self.app.error_(self.headers)
+                self.app.stop('')
         return analytisc_data
 
     def get_stocks_of_warehouse(self):
@@ -324,7 +336,7 @@ class Seller:
         keys = [key.replace('"', "") for key in csv_items[0].split(';')]
         items = []
         for i, it in enumerate(csv_items):
-            item = {}
+            item: dict = {}
             if i == 0:
                 continue
             values = [key.replace('"', "") for key in it.split(';')]
@@ -479,6 +491,7 @@ class Seller:
             analytic['date'] = self.app.today_time
             analytic['user_id'] = company_data.get('user_id')
             analytic['company_id'] = company_data.get('id')
+            analytic['updated_at'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
             analytics.append(analytic)
         return analytics
 
@@ -567,7 +580,7 @@ def connect1(self, url, headers, data, attempt=1, res=None, json_data=None):
             body = json.dumps(data)
             res = requests.post(url=url, headers=headers, data=body)
             status_code = res.status_code
-            self.app.info_(status_code, url)
+            self.app.info_(status_code, url) if self else print(status_code, url)
             if status_code == 200:
                 break
             elif status_code == 429:

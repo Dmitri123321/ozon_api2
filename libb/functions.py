@@ -70,8 +70,9 @@ def bulk_write(app, ind, items, user_id, company_id):
                                         upsert=True)
                       for item in items]
         result = app.collections_list[ind].bulk_write(list_write)
-        f = True if result.upserted_count == len(items) else False
-        app.info_(f"inserted: {f}, base:{bases[ind]}, user_id:{user_id}, company_id:{company_id}")
+        f = True if result.matched_count == len(items) else False
+        g = True if result.upserted_count == len(items) else False
+        app.info_(f"updated: {f}, upserted: {g}, base:{bases[ind]}, user_id:{user_id}, company_id:{company_id}")
     except:
         app.error_(f"user_id:{user_id}, company_id:{company_id}")
         pass
