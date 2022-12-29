@@ -42,10 +42,10 @@ def process(app, str_data_set):
                     app.warn_(f'check period_step_back: {analytics_data}')
                     return
                 if isinstance(metrics, list) and len(metrics) <= 14:
-                    analytics_data = client.get_analytics(metrics, period, period_step_back, len(product_ids))
+                    analytics_data, metrics = client.get_analytics(metrics, period, period_step_back, len(product_ids))
                     app.info_('received analytics data')
                     analytics = client.reform_analytics_data(analytics_data=analytics_data, products_data=products_data,
-                                                             company_data=company_data)
+                                                             company_data=company_data, metrics=metrics)
                     app.info_('prepared analytics data')
                 else:
                     app.warn_(f'check metrics: {metrics}')

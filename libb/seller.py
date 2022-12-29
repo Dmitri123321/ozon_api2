@@ -212,7 +212,42 @@ class Seller:
             except:
                 self.app.error_(self.headers)
                 self.app.stop('')
-        return analytisc_data
+        return analytisc_data, metrics
+
+    def reform_analytics_data(self, analytics_data, products_data, company_data, metrics):
+        analytics = []
+        for analytic_data in analytics_data:
+            fbs_sku = analytic_data['dimensions'][0]['id']
+            analytic = {'offer_id_short': '', 'product_id': 0}
+            for product in products_data:
+                if int(fbs_sku) == product['fbo_sku']:
+                    analytic['offer_id_short'] = product['offer_id_short']
+                    analytic['product_id'] = product['product_id']
+                    analytic['coming'] = product.get('discounted_stocks', {}).get('coming', 0)
+                    analytic['present'] = product.get('discounted_stocks', {}).get('present', 0)
+                    analytic['reserved'] = product.get('discounted_stocks', {}).get('reserved', 0)
+                    analytic['brand'] = product['brand']
+                    analytic['category_name'] = product['category_name']
+                    analytic['name'] = product['name']
+                    analytic['marketing_price'] = product['price']['product_id']
+                    analytic['min_ozon_price'] = product['price']['min_ozon_price']
+                    analytic['old_price'] = product['price']['old_price']
+                    analytic['premium_price'] = product['price']['premium_price']
+                    analytic['price'] = product['price']['price']
+                    break
+            if not analytic['product_id']:
+                continue
+            for i, metric in enumerate(metrics):
+                try:
+                    analytic[metric] = analytic_data['metrics'][i]
+                except:
+                    self.app.error_(metric, self.company_id, self.client_id)
+            analytic['date'] = self.app.today_time
+            analytic['user_id'] = company_data.get('user_id')
+            analytic['company_id'] = company_data.get('id')
+            analytic['updated_at'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+            analytics.append(analytic)
+        return analytics
 
     def get_stocks_of_warehouse(self):
         url = 'https://api-seller.ozon.ru/v1/analytics/stock_on_warehouses'
@@ -458,42 +493,6 @@ class Seller:
             name = cat['title']
             self.app.cat_ids[cat_id] = name
         return name
-
-    def reform_analytics_data(self, analytics_data, products_data, company_data):
-        analytics = []
-        for analytic_data in analytics_data:
-            fbs_sku = analytic_data['dimensions'][0]['id']
-            analytic = {'offer_id_short': '', 'product_id': 0}
-            for product in products_data:
-                if int(fbs_sku) == product['fbo_sku']:
-                    analytic['offer_id_short'] = product['offer_id_short']
-                    analytic['product_id'] = product['product_id']
-                    analytic['coming'] = product.get('discounted_stocks', {}).get('coming', 0)
-                    analytic['present'] = product.get('discounted_stocks', {}).get('present', 0)
-                    analytic['reserved'] = product.get('discounted_stocks', {}).get('reserved', 0)
-                    analytic['brand'] = product['brand']
-                    analytic['category_name'] = product['category_name']
-                    analytic['name'] = product['name']
-                    analytic['marketing_price'] = product['price']['product_id']
-                    analytic['min_ozon_price'] = product['price']['min_ozon_price']
-                    analytic['old_price'] = product['price']['old_price']
-                    analytic['premium_price'] = product['price']['premium_price']
-                    analytic['price'] = product['price']['price']
-                    break
-            if not analytic['product_id']:
-                continue
-            analytic['ordered_units'] = analytic_data['metrics'][0]
-            analytic['cancellations'] = analytic_data['metrics'][1]
-            analytic['returns'] = analytic_data['metrics'][2]
-            analytic['revenue'] = analytic_data['metrics'][3]
-            analytic['delivered_units'] = analytic_data['metrics'][4]
-            # analytic['date'] = dt.datetime.today().strftime('%Y-%m-%dT%H:%M:%S.%f')[0:23] + 'Z'
-            analytic['date'] = self.app.today_time
-            analytic['user_id'] = company_data.get('user_id')
-            analytic['company_id'] = company_data.get('id')
-            analytic['updated_at'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-            analytics.append(analytic)
-        return analytics
 
     def get_transaction_list(self,  period, period_step_back, page_count=1, page=1, while_loop=0):
         """пока не понятно что с периодом , отдает больше чем за 3 месяца"""
