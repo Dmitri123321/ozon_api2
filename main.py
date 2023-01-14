@@ -9,7 +9,7 @@ def main(app):
         make_index(app)
         ReconnectingRabbit(app, process).run()
     except:
-        app.sms(f"{app.config['bot_name'], app.my_node} has been stoped with an error")
+        app.sms(f"{app.bot_name, app.version, app.my_node} has been stoped with an error")
         app.sms(files=['info.log', 'warning.log', 'error.log'])
 
 

@@ -223,17 +223,21 @@ class Seller:
                 if int(fbs_sku) == product['fbo_sku']:
                     analytic['offer_id_short'] = product['offer_id_short']
                     analytic['product_id'] = product['product_id']
-                    analytic['coming'] = product.get('discounted_stocks', {}).get('coming', 0)
-                    analytic['present'] = product.get('discounted_stocks', {}).get('present', 0)
-                    analytic['reserved'] = product.get('discounted_stocks', {}).get('reserved', 0)
+                    # if analytic['product_id'] == 258372932:
+                    #     a =1
+                    analytic['coming'] = product.get('stocks', {}).get('coming', 0)
+                    analytic['present'] = product.get('stocks', {}).get('present', 0)
+                    analytic['reserved'] = product.get('stocks', {}).get('reserved', 0)
                     analytic['brand'] = product['brand']
                     analytic['category_name'] = product['category_name']
                     analytic['name'] = product['name']
-                    analytic['marketing_price'] = product['price']['product_id']
+                    analytic['marketing_price'] = product['price']['marketing_price']
                     analytic['min_ozon_price'] = product['price']['min_ozon_price']
                     analytic['old_price'] = product['price']['old_price']
                     analytic['premium_price'] = product['price']['premium_price']
                     analytic['price'] = product['price']['price']
+                    analytic['color'] = product['color']
+                    analytic['size'] = product['size']
                     break
             if not analytic['product_id']:
                 continue
@@ -440,12 +444,19 @@ class Seller:
         prices = []
         stocks = []
         for item in items_info:
+            p = item['offer_id'].split('/')
+            try:
+                color = '-'.join(p[1].split('-')[1:])
+                size = p[1].split('-')[0]
+            except:
+                color = 0
+                size = 0
             reform_item = {'brand': None,
                            'user_id': self.user_id,
                            'company_id': self.company_id,
                            'offer_id_short': item['offer_id'].split('/')[0],
-                           'size': item['offer_id'].split('/')[1].split('-')[0],
-                           'color': '-'.join(item['offer_id'].split('/')[1].split('-')[1:]),
+                           'size': size,
+                           'color': color,
                            'category_id': item['category_id'],
                            'category_name': self.get_category_name(item['category_id']),
                            'date': self.app.today_time
@@ -474,7 +485,10 @@ class Seller:
                 else:
                     reform_item[key] = item[key]
             reform_item['product_id'] = reform_item.pop('id')
+            # if reform_item['product_id'] == 258372932:
+            #     a = 1
             reform_item['price'] = price
+            reform_item['stocks'] = stock
             prices.append(price)
             stocks.append(stock)
             reform_json.append(reform_item)
@@ -540,11 +554,16 @@ class Seller:
     def get_rating(self, reform_json):
         url = 'https://api-seller.ozon.ru/v1/product/rating-by-sku'
         ids = [item['product_id'] for item in reform_json]
-        data = {
-            "skus": ids
-        }
-        json_data = connect1(self, url, self.headers, data)
-        ratings = json_data['products']
+        n = 100
+        sku_ids_part = [ids[i: i + n] for i in range(0, len(ids), n)]
+        ratings = []
+        for part in sku_ids_part:
+            data = {
+                "skus": part
+            }
+            json_data = connect1(self, url, self.headers, data)
+            ratings_part = json_data['products']
+            ratings += ratings_part
         for rating in ratings:
             rating['product_id'] = rating.pop('sku')
         return ratings

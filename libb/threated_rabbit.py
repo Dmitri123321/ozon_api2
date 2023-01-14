@@ -186,9 +186,12 @@ class Rabbit1:
     def stop(self):
         self.app.warn_('rabbit connection stoping')
         with self.app.lock:
-            self._channel.close()
-            self._connection.close()
-        self.app.warn_('rabbit connection stoped')
+            try:
+                self._channel.close()
+                self._connection.close()
+                self.app.warn_('rabbit connection stoped')
+            except:
+                self.app.warn_('rabbit connection was broken yet')
 
     def do_work(self, *args):
         delivery_tag = args[0]

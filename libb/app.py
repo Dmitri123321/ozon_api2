@@ -3,10 +3,9 @@ import json
 import logging
 import os
 import time
-from datetime import date, timedelta, datetime
-# from libb.threated_rabbit import ReconnectingRabbit
+from datetime import date, datetime
+# from datetime import timedelta
 from urllib.parse import urlparse
-import pika
 import pymysql
 from pymongo import MongoClient
 import sys
@@ -103,7 +102,6 @@ class App:
         self.config = load_config(self)
         self.info_(f'bot name: {self.bot_name} version: {self.version}')
         self.my_node = get_my_node()
-        self.properties = pika.BasicProperties(headers={'id': self.config['rabbit']['header']})
         self.rabbit_data = connect_rabbit(self)
         self.lock = None
         self.info_('try connect to mongo')
@@ -226,12 +224,14 @@ def detect_mongo_base(self, enable_ssl=False, status=0):
         else:
             mongo_base = self.config['mongodb']['mongo_base_my_local']
             self.info_('global base base will be used')
+        if '27017' not in mongo_base:
+            enable_ssl = True
+        mongo_data = {'host': mongo_base, 'tls': enable_ssl, 'tlsAllowInvalidCertificates': True}
     else:
         mongo_base = os.getenv('mongo')
-    if '27017' not in mongo_base:
-        enable_ssl = True
+        mongo_data = {'host': mongo_base}
     self.info_(f'mongo_base: {mongo_base}, enable_ssl: {enable_ssl}')
-    cluster = MongoClient(mongo_base, tls=enable_ssl, tlsAllowInvalidCertificates=True)
+    cluster = MongoClient(**mongo_data)
     try:
         cluster.server_info()
         self.info_('mongo connection established')
