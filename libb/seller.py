@@ -1,6 +1,5 @@
 import csv
 import datetime as dt
-# from pprint import pprint
 import requests
 import json
 
@@ -34,10 +33,10 @@ class Seller:
             "Api-Key": f"{self.api_key}"
         }
 
-    def get_product_ids(self, last_id="", start_reqv=0):
+    def get_product_ids(self, last_id=""):
         url = 'https://api-seller.ozon.ru/v2/product/list'
-        items = []
-        while True:
+        all_items = []
+        for _ in range(0, 100):
             data = {
                 "limit": 1000,
                 "last_id": last_id,
@@ -45,29 +44,117 @@ class Seller:
                     "visibility": "ALL"
                 }
             }
-            start_reqv += 1
-            json_data = connect1(self, url, self.headers, data)
-            last_id = json_data['result'].get('last_id')
-            items.extend(json_data['result'].get('items'))
-            if json_data['result'].get('total') < 1000:
+            items, total, last_id = get_helper1(connect1(self, url, self.headers, data))
+            all_items.extend(items)
+            if not last_id or len(items) < 1000:
                 break
-        product_ids = [item.get('product_id') for item in items]
+        product_ids = [item.get('product_id') for item in all_items]
         return product_ids
 
-    def get_prices(self, items_list):
+    def get_products_info(self, product_ids, n=1000):
         url = 'https://api-seller.ozon.ru/v2/product/info/list'
+        items_info = []
+        product_ids_part = [product_ids[i: i + n] for i in range(0, len(product_ids), n)]
+        for part in product_ids_part:
+            data = {
+                "offer_id": [],
+                "product_id": part,
+                "sku": []
+            }
+            items, total, last_id = get_helper1(connect1(self, url, self.headers, data))
+            items_info.extend(items)
+        return items_info
 
-        offers_id = [pair.get('offer_id') for pair in items_list]
+    def reform_items_info(self, products_info):
+        keys_for_price = ['marketing_price', 'min_ozon_price', 'old_price', 'premium_price', 'price']
+        keys_for_stock = ['coming', 'present', 'reserved']
+        removed_keys = ['commissions', 'recommended_price', 'min_price', 'sources', 'errors', 'price_index',
+                        'service_type', 'sources', 'state', 'status', 'vat', 'visibility_details']
+        updated_at = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        prices, products, stocks, categories = [], [], [], []
+        for item in products_info:
+            product_id = item.pop('id')
+            price = {}
+            for i in keys_for_price:
+                try:
+                    price[i] = float(item.get(i, 0))
+                except:
+                    price[i] = 0
+            stock = {x: item.get('stocks', {}).get(x, 0) for x in keys_for_stock}
+            offer_id_short = l[0] if isinstance(l := item['offer_id'].split('/'), list) and len(l) > 0 else ''
+            y = {'product_id': product_id, 'offer_id_short': offer_id_short,
+                 'date': self.app.today_time, 'updated_at': updated_at}
+            price.update(y)
+            stock.update(y)
+            category = {'category_id': item['category_id'], 'title': self.get_category_name(item['category_id']),
+                        'updated_at': updated_at}
+            product = {'user_id': self.user_id, 'company_id': self.company_id}
+            removed_keys.extend(keys_for_price)
+            for key in removed_keys:
+                if key in item:
+                    del item[key]
+            item.update(y)
+            item.update(product)
+            item.update(category)
+            item['price'] = price
+            item['stocks'] = stock
+            prices.append(price)
+            stocks.append(stock)
+            products.append(item)
+            categories.append(category) if category not in categories else None
+        return prices, products, stocks, categories
 
+    def get_category_name(self, cat_id):
+        url = 'https://api-seller.ozon.ru/v2/category/tree'
+        name = self.app.cat_ids.get(cat_id)
+        if not name:
+            data = {
+                "category_id": cat_id,
+                "language": "DEFAULT"
+            }
+            items, total, last_id = get_helper2(connect1(self, url, self.headers, data))
+            cat = items[0]
+            name = cat['title']
+            self.app.cat_ids[cat_id] = name
+        return name
+
+    def get_attributes(self, categories):
+        updated_at = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        categories_list = [x['category_id'] for x in categories]
+        url = 'https://api-seller.ozon.ru/v3/category/attribute'
         data = {
-            "offer_id": offers_id,
-            "product_id": [],
-            "sku": []
+            "attribute_type": "ALL",
+            "category_id": categories_list,
+            "language": "DEFAULT"
         }
+        items, total, last_id = get_helper2(connect1(self, url, self.headers, data))
+        new_attributes = []
+        for category in items:
+            category_id = category['category_id']
+            attributes = category['attributes']
+            for attribute in attributes:
+                attribute['category_id'] = category_id
+                attribute['attribute_id'] = attribute.pop('id')
+                attribute['updated_at'] = updated_at
+                new_attributes.append(attribute)
+        return new_attributes
 
-        json_data = connect1(self, url, self.headers, data)
-        items = json_data['result'].get('items')
-        return items
+    def get_attribute_values(self, product_ids, last_id='', total=1001):
+        url = 'https://api-seller.ozon.ru/v3/products/info/attributes'
+        filter_ = {"product_id": product_ids} if product_ids else {"visibility": "ALL"}
+        all_items = []
+        while total >= 1000:
+            data = {
+                "filter": filter_,
+                "limit": 1000,
+                "last_id": last_id,
+                "sort_dir": "ASC"
+            }
+            items, total, last_id = get_helper2(connect1(self, url, self.headers, data))
+            all_items.extend(items)
+            if not last_id or total < 1000:
+                break
+        return {x['id']: x for x in all_items}
 
     def get_stocks(self, items_list):
         url = 'https://api-seller.ozon.ru/v3/product/info/stocks'
@@ -138,7 +225,8 @@ class Seller:
         return clear_items
 
     def get_analytics(self, metrics, period, period_step_back, count_ids, mode='raw'):
-        metrics = ["ordered_units", "cancellations", "returns", "revenue", "delivered_units"] if not metrics else metrics
+        metrics = ["ordered_units", "cancellations", "returns", "revenue",
+                   "delivered_units"] if not metrics else metrics
         # metrics = ["hits_view_search", "hits_view_pdp", "hits_view", "hits_tocart_search", "position_category"]
         """
             metrics:
@@ -170,7 +258,7 @@ class Seller:
         url = 'https://api-seller.ozon.ru/v1/analytics/data'
         today = dt.datetime.today()
         date_to = dt.datetime.strftime(today - dt.timedelta(period_step_back), '%Y-%m-%d')
-        date_from = dt.datetime.strftime(today - dt.timedelta(period_step_back + period-1), '%Y-%m-%d')
+        date_from = dt.datetime.strftime(today - dt.timedelta(period_step_back + period - 1), '%Y-%m-%d')
         """ 
             dimension:
             sku — идентификатор товара,
@@ -205,7 +293,8 @@ class Seller:
                     "offset": offset
                 }
                 json_data = connect1(self, url, self.headers, data)
-                result = json_data['result']['data'] if mode == 'raw' else self.analytisc_helper(json_data['result']['data'])
+                result = json_data['result']['data'] if mode == 'raw' else self.analytisc_helper(
+                    json_data['result']['data'])
                 len_result = len(result)
                 analytisc_data += result
                 offset += data_limit
@@ -277,43 +366,6 @@ class Seller:
         json_data = connect1(self, url, self.headers, data)
         item_info = json_data['result']
         return item_info
-
-    def get_all_products_info(self, product_ids):
-        url = 'https://api-seller.ozon.ru/v2/product/info/list'
-        items_info = []
-        n = 1000
-        product_ids_part = [product_ids[i: i + n] for i in range(0, len(product_ids), n)]
-        for part in product_ids_part:
-
-            data = {
-                "offer_id": [],
-                "product_id": part,
-                "sku": []
-            }
-
-            json_data = connect1(self, url, self.headers, data)
-            item_info = json_data
-            if 'result' in item_info and 'items' in item_info['result']:
-                items_info.extend(item_info['result']['items'])
-        return self.reform_items_info(items_info)
-
-    def get_attributes(self, items_list):
-        url = 'https://api-seller.ozon.ru/v3/products/info/attributes'
-
-        product_id = [pair.get('product_id') for pair in items_list]
-        data = {
-            "filter": {
-                "product_id": product_id,
-                "visibility": "ALL"
-            },
-            "limit": 1,
-            "last_id": "",
-            "sort_dir": "ASC"
-        }
-
-        json_data = connect1(self, url, self.headers, data)
-        attributes = json_data
-        return attributes
 
     def get_report_of_stock(self, file_name):
         url = 'https://api-seller.ozon.ru/v1/report/stock/create'
@@ -437,82 +489,15 @@ class Seller:
         print(len(full_result))
         return full_result
 
-    def reform_items_info(self, items_info):
-        keys_for_price = ['marketing_price', 'min_ozon_price', 'old_price', 'premium_price', 'price']
-        removed_keys = ['commissions', 'recommended_price', 'min_price', 'sources']
-        reform_json = []
-        prices = []
-        stocks = []
-        for item in items_info:
-            p = item['offer_id'].split('/')
-            try:
-                color = '-'.join(p[1].split('-')[1:])
-                size = p[1].split('-')[0]
-            except:
-                color = 0
-                size = 0
-            reform_item = {'brand': None,
-                           'user_id': self.user_id,
-                           'company_id': self.company_id,
-                           'offer_id_short': item['offer_id'].split('/')[0],
-                           'size': size,
-                           'color': color,
-                           'category_id': item['category_id'],
-                           'category_name': self.get_category_name(item['category_id']),
-                           'date': self.app.today_time
-                           }
-            price = {
-                'offer_id_short': reform_item['offer_id_short'],
-                'product_id': item['id'],
-                'date': self.app.today_time
-            }
-            stock = {
-                'product_id': item['id'],
-                'offer_id_short': reform_item['offer_id_short'],
-                'date': self.app.today_time
-            }
-            for key in item:
-                if key in keys_for_price:
-                    try:
-                        price[key] = float(item[key]) if item[key] != '' else 0
-                    except:
-                        price[key] = item[key]
-                elif key == 'stocks':
-                    for k in item['stocks']:
-                        stock[k] = item['stocks'][k]
-                elif key in removed_keys:
-                    continue
-                else:
-                    reform_item[key] = item[key]
-            reform_item['product_id'] = reform_item.pop('id')
-            # if reform_item['product_id'] == 258372932:
-            #     a = 1
-            reform_item['price'] = price
-            reform_item['stocks'] = stock
-            prices.append(price)
-            stocks.append(stock)
-            reform_json.append(reform_item)
-        return prices, reform_json, stocks
 
-    def get_category_name(self, cat_id):
-        url = 'https://api-seller.ozon.ru/v2/category/tree'
-        name = self.app.cat_ids.get(cat_id)
-        if not name:
-            data = {
-                "category_id": cat_id,
-                "language": "DEFAULT"
-            }
-            json_data = connect1(self, url, self.headers, data)
-            cat = json_data['result'][0]
-            name = cat['title']
-            self.app.cat_ids[cat_id] = name
-        return name
 
-    def get_transaction_list(self,  period, period_step_back, page_count=1, page=1, while_loop=0):
+    def get_transaction_list(self, period, period_step_back, page_count=1, page=1, while_loop=0):
         """пока не понятно что с периодом , отдает больше чем за 3 месяца"""
         url = 'https://api-seller.ozon.ru/v3/finance/transaction/list'
-        date_to = dt.datetime.strftime(self.app.today - dt.timedelta(period_step_back), '%Y-%m-%dT%H:%M:%S.%f')[0:23] + 'Z'
-        date_from = dt.datetime.strftime(self.app.today - dt.timedelta(period_step_back + period-1), '%Y-%m-%dT%H:%M:%S.%fZ')[0:23] + 'Z'
+        date_to = dt.datetime.strftime(self.app.today - dt.timedelta(period_step_back), '%Y-%m-%dT%H:%M:%S.%f')[
+                  0:23] + 'Z'
+        date_from = dt.datetime.strftime(self.app.today - dt.timedelta(period_step_back + period - 1),
+                                         '%Y-%m-%dT%H:%M:%S.%fZ')[0:23] + 'Z'
         transaction_list = []
         while page <= page_count:
             while_loop += 1
@@ -569,28 +554,7 @@ class Seller:
         return ratings
 
 
-# json_writer = JSON_()
-# writer = XLSX()
-
-
-# writer = CSV()
-# writer.write_csv(items=amber_prices, file_name='prices.results')
-
-# def connect(url, headers, data, attempt=1, res=None, status_code=0):
-#     while attempt < 5:
-#         try:
-#             time.sleep(2)
-#             body = json.dumps(data)
-#             res = requests.post(url=url, headers=headers, data=body)
-#             status_code = res.status_code
-#             break
-#         except:
-#             attempt += 1
-#             time.sleep(10)
-#     return res, status_code
-
-
-def connect1(self, url, headers, data, attempt=1, res=None, json_data=None):
+def connect1(self, url, headers, data, attempt=1, res=None):
     while attempt < 5:
         attempt += 1
         try:
@@ -606,11 +570,24 @@ def connect1(self, url, headers, data, attempt=1, res=None, json_data=None):
                 continue
         except:
             time.sleep(10)
-    else:
-        self.app.error_(url, headers, data)
-        self.app.stop()
     try:
         json_data = res.json()
     except:
-        self.app.stop('no json_data or json_data are corrupt')
+        json_data = {}
+        self.app.error_('no json_data or json_data are corrupt')
     return json_data
+
+
+def get_helper1(json_data):
+    result = json_data.get('result', {})
+    last_id = result.get('last_id', '')
+    total = result.get('total', 0)
+    items = result.get('items', [])
+    return items, total, last_id
+
+
+def get_helper2(json_data):
+    items = json_data.get('result', [])
+    last_id = json_data.get('last_id', '')
+    total = json_data.get('total', 0)
+    return items, total, last_id

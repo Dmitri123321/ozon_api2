@@ -112,9 +112,13 @@ class App:
         self.collection_analytics = cluster.OzonData.analytics
         self.collection_transaction = cluster.OzonData.transaction
         self.collection_rating = cluster.OzonData.rating
+        self.collection_categories = cluster.OzonData.categories
+        self.collection_attributes = cluster.OzonData.product_properties
         self.collections_list = [self.collection_products, self.collection_prices,
-                                 self.collection_stocks, self.collection_analytics,
-                                 self.collection_transaction, self.collection_rating]
+                                 self.collection_stocks, self.collection_categories,
+                                 self.collection_analytics, self.collection_transaction,
+                                 self.collection_rating, self.collection_attributes,
+                                 ]
         self.cat_ids = {}
         self.info_('load app finished, starting....')
 

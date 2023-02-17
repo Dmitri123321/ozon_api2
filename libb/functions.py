@@ -1,6 +1,7 @@
 import pymongo
 
-bases = ['products', 'prices', 'stocks', 'analytics', 'transaction']
+bases = ['products', 'prices', 'stocks', 'categories', 'analytics', 'transaction', 'raiting',
+         'attributes']
 
 
 def make_index(app):
@@ -18,10 +19,17 @@ def make_index(app):
                     pass
         return result
 
-    indexes_list = ['product_id', 'product_id', 'product_id',
-                    [('date', pymongo.ASCENDING), ('product_id', pymongo.ASCENDING)], 'operation_id', 'product_id']
+    indexes_list = ['product_id',
+                    'product_id',
+                    'product_id',
+                    'category_id',
+                    [('date', pymongo.ASCENDING), ('product_id', pymongo.ASCENDING)],
+                    'operation_id',
+                    'product_id',
+                    [('category_id', pymongo.ASCENDING), ('attribute_id', pymongo.ASCENDING)]
+                    ]
     for ind, index in enumerate(indexes_list):
-        if ind not in [0, 3, 5]:
+        if ind not in [0, 3, 4, 6, 7]:
             continue
         indexes = app.collections_list[ind].index_information()
         if not check_index(indexes, index):
@@ -34,7 +42,11 @@ def make_index(app):
 def send_items(app, ind, items, user_id, company_id):
     for item in items:
         try:
-            result = app.collections_list[ind].update_one({'product_id': item['product_id']}, {'$set': item}, upsert=True)
+            if 'product_id' in item:
+                up_key = {'product_id': item['product_id']}
+            else:
+                up_key = {'category_id': item['category_id']}
+            result = app.collections_list[ind].update_one(up_key, {'$set': item}, upsert=True)
             a = result.raw_result['updatedExisting']
             b = bool(result.modified_count)
             c = 'upserted' in result.raw_result
