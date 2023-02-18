@@ -33,6 +33,9 @@ class Seller:
             "Api-Key": f"{self.api_key}"
         }
 
+    def updated_at(self):
+        return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+
     def get_product_ids(self, last_id=""):
         url = 'https://api-seller.ozon.ru/v2/product/list'
         all_items = []
@@ -71,7 +74,8 @@ class Seller:
         removed_keys = ['commissions', 'recommended_price', 'min_price', 'sources', 'errors', 'price_index',
                         'service_type', 'sources', 'state', 'status', 'vat', 'visibility_details']
         updated_at = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        prices, products, stocks, categories = [], [], [], []
+        prices, products, stocks = [], [], []
+        cats = {}
         for item in products_info:
             product_id = item.pop('id')
             price = {}
@@ -86,8 +90,8 @@ class Seller:
                  'date': self.app.today_time, 'updated_at': updated_at}
             price.update(y)
             stock.update(y)
-            category = {'category_id': item['category_id'], 'title': self.get_category_name(item['category_id']),
-                        'updated_at': updated_at}
+            if item['category_id'] not in cats:
+                cats[item['category_id']] = self.get_category(item['category_id'])
             product = {'user_id': self.user_id, 'company_id': self.company_id}
             removed_keys.extend(keys_for_price)
             for key in removed_keys:
@@ -95,28 +99,25 @@ class Seller:
                     del item[key]
             item.update(y)
             item.update(product)
-            item.update(category)
+            item.update(cats[item['category_id']])
             item['price'] = price
             item['stocks'] = stock
             prices.append(price)
             stocks.append(stock)
             products.append(item)
-            categories.append(category) if category not in categories else None
+        categories = [cats[x] for x in cats]
         return prices, products, stocks, categories
 
-    def get_category_name(self, cat_id):
+    def get_category(self, cat_id):
         url = 'https://api-seller.ozon.ru/v2/category/tree'
-        name = self.app.cat_ids.get(cat_id)
-        if not name:
-            data = {
-                "category_id": cat_id,
-                "language": "DEFAULT"
-            }
-            items, total, last_id = get_helper2(connect1(self, url, self.headers, data))
-            cat = items[0]
-            name = cat['title']
-            self.app.cat_ids[cat_id] = name
-        return name
+        data = {
+            "category_id": cat_id,
+            "language": "DEFAULT"
+        }
+        items, total, last_id = get_helper2(connect1(self, url, self.headers, data))
+        name = items[0].get('title') if len(items) > 0 and isinstance(items[0], dict) else None
+        category = {'category_id': cat_id, 'category_name': name}
+        return category
 
     def get_attributes(self, categories):
         updated_at = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
@@ -224,10 +225,8 @@ class Seller:
         # pprint(clear_items)
         return clear_items
 
-    def get_analytics(self, metrics, period, period_step_back, count_ids, mode='raw'):
-        metrics = ["ordered_units", "cancellations", "returns", "revenue",
-                   "delivered_units"] if not metrics else metrics
-        # metrics = ["hits_view_search", "hits_view_pdp", "hits_view", "hits_tocart_search", "position_category"]
+    def get_analytics(self, count_ids,  metrics, period, period_step_back, len_result=1000, offset=0):
+        url = 'https://api-seller.ozon.ru/v1/analytics/data'
         """
             metrics:
             hits_view_search — показы в поиске и в категории,
@@ -255,7 +254,6 @@ class Seller:
             postings — отправления,
             postings_premium — отправления с подпиской Premium.
         """
-        url = 'https://api-seller.ozon.ru/v1/analytics/data'
         today = dt.datetime.today()
         date_to = dt.datetime.strftime(today - dt.timedelta(period_step_back), '%Y-%m-%d')
         date_from = dt.datetime.strftime(today - dt.timedelta(period_step_back + period - 1), '%Y-%m-%d')
@@ -275,70 +273,46 @@ class Seller:
             modelID — модель.
         """
         analytisc_data = []
-        offset = 0
-        attempt = 0
-        len_result = 1000
-        data_limit = 1000
-        limit = count_ids // data_limit + 1
-        while attempt < limit and not len_result < data_limit:
-            attempt += 1
-            try:
-                data = {
-                    "date_from": date_from,
-                    "date_to": date_to,
-                    "metrics": metrics,
-                    "filters": [],
-                    "dimension": ["sku"],
-                    "limit": data_limit,
-                    "offset": offset
-                }
-                json_data = connect1(self, url, self.headers, data)
-                result = json_data['result']['data'] if mode == 'raw' else self.analytisc_helper(
-                    json_data['result']['data'])
-                len_result = len(result)
-                analytisc_data += result
-                offset += data_limit
-            except:
-                self.app.error_(self.headers)
-                self.app.stop('')
-        return analytisc_data, metrics
+        while len_result >= 1000:
+            data = {
+                "date_from": date_from,
+                "date_to": date_to,
+                "metrics": metrics,
+                "filters": [],
+                "dimension": ["sku"],
+                "limit": 1000,
+                "offset": offset
+            }
+            items, total, last_id = get_helper1(connect1(self, url, self.headers, data))
+            len_result = len(items)
+            analytisc_data.extend(items)
+            offset += 1000
+            if len_result < 1000:
+                break
+        return analytisc_data
 
-    def reform_analytics_data(self, analytics_data, products_data, company_data, metrics):
+    def reform_analytics(self, analytics_data, products_data, metrics):
+        list1 = ['offer_id_short', 'offer_id', 'product_id', 'category_name', 'name', 'color', 'size', 'brand',
+                 'vendor_size', 'common_card_id']
+        list2 = ['coming', 'present', 'reserved']
+        list3 = ['marketing_price', 'min_ozon_price', 'old_price', 'premium_price', 'price']
+        x = {'date': self.app.today_time, 'user_id': self.user_id, 'company_id': self.company_id, 'updated_at': self.updated_at()}
         analytics = []
-        for analytic_data in analytics_data:
-            fbs_sku = analytic_data['dimensions'][0]['id']
-            analytic = {'offer_id_short': '', 'product_id': 0}
-            for product in products_data:
-                if int(fbs_sku) == product['fbo_sku']:
-                    analytic['offer_id_short'] = product['offer_id_short']
-                    analytic['product_id'] = product['product_id']
-                    # if analytic['product_id'] == 258372932:
-                    #     a =1
-                    analytic['coming'] = product.get('stocks', {}).get('coming', 0)
-                    analytic['present'] = product.get('stocks', {}).get('present', 0)
-                    analytic['reserved'] = product.get('stocks', {}).get('reserved', 0)
-                    analytic['brand'] = product['brand']
-                    analytic['category_name'] = product['category_name']
-                    analytic['name'] = product['name']
-                    analytic['marketing_price'] = product['price']['marketing_price']
-                    analytic['min_ozon_price'] = product['price']['min_ozon_price']
-                    analytic['old_price'] = product['price']['old_price']
-                    analytic['premium_price'] = product['price']['premium_price']
-                    analytic['price'] = product['price']['price']
-                    analytic['color'] = product['color']
-                    analytic['size'] = product['size']
-                    break
-            if not analytic['product_id']:
-                continue
+        anal_dict = {y['dimensions'][0]['id']: y['metrics'] for y in analytics_data}
+        for product in products_data:
+            analytic = {}
+            for key in list1:
+                analytic[key] = product[key] if key in product else None
+            for key in list2:
+                analytic[key] = product['stocks'][key] if key in product['stocks'] else 0
+            for key in list3:
+                analytic[key] = product['price'][key] if key in product['price'] else 0
             for i, metric in enumerate(metrics):
                 try:
-                    analytic[metric] = analytic_data['metrics'][i]
+                    analytic[metric] = anal_dict[str(product['fbo_sku'])][i]
                 except:
-                    self.app.error_(metric, self.company_id, self.client_id)
-            analytic['date'] = self.app.today_time
-            analytic['user_id'] = company_data.get('user_id')
-            analytic['company_id'] = company_data.get('id')
-            analytic['updated_at'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+                    self.app.error_('metric form', metric, self.company_id)
+            analytic.update(x)
             analytics.append(analytic)
         return analytics
 
@@ -349,7 +323,6 @@ class Seller:
             "limit": 1000,
             "offset": 0
         }
-
         json_data = connect1(self, url, self.headers, data)
         stocks = json_data
         return stocks
@@ -582,7 +555,7 @@ def get_helper1(json_data):
     result = json_data.get('result', {})
     last_id = result.get('last_id', '')
     total = result.get('total', 0)
-    items = result.get('items', [])
+    items = result['items'] if 'items' in result else result['data'] if 'data' in result else []
     return items, total, last_id
 
 

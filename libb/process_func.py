@@ -43,36 +43,20 @@ def process(app, str_data_set):
             """оставим то что нужно"""
             prices = process_scenario(app, scenario, 'prices', prices)
             stocks = process_scenario(app, scenario, 'stocks', stocks)
+            """дополним характеристиками если надо"""
             attributes = get_attributes(app, scenario, client, categories)
             categories = process_scenario(app, scenario, 'categories', categories)
-            """дополним характеристиками"""
+            """дополним значениями характеристик если надо"""
             products = get_attribute_values(app, scenario, products, client)
+            """получим аналитические данные если надо"""
+            app.info_(' --> analytic')
+            try:
+                analytics = get_analytics(app, scenario, products, client)
+                app.info_(' [v] analytic')
+            except:
+                app.info_(' [x] analytic')
 
-            """получим аналитические данные"""
-            app.info_('received and prepared products_info')
-            analytics_data = scenario.get('analytics')
-            if analytics_data and isinstance(analytics_data, dict):
-                metrics = analytics_data.get('metrics')
-                period = analytics_data.get('period', 1)
-                if not isinstance(period, int) or period > 720 or period < 1:
-                    app.warn_(f'check period: {analytics_data}')
-                    return
-                period_step_back = analytics_data.get('period_step_back', 1)
-                if not isinstance(period_step_back, int) and period_step_back > 720:
-                    app.warn_(f'check period_step_back: {analytics_data}')
-                    return
-                if isinstance(metrics, list) and len(metrics) <= 14:
-                    analytics_data, metrics = client.get_analytics(metrics, period, period_step_back, len(product_ids))
-                    app.info_('received analytics data')
-                    analytics = client.reform_analytics_data(analytics_data=analytics_data, products_data=products,
-                                                             company_data=company_data, metrics=metrics)
-                    app.info_('prepared analytics data')
-                else:
-                    app.warn_(f'check metrics: {metrics}')
-                    return
-            else:
-                analytics = []
-            """получим транзакции данные"""
+            """получим транзакции если надо"""
             transaction_data = scenario.get('transactions')
             if transaction_data and isinstance(transaction_data, dict):
                 period = transaction_data.get('period', 1)
@@ -164,7 +148,7 @@ def get_attributes(app, scenario, client, categories):
 def get_attribute_values(app, scenario, products, client):
     def get_value_by_id(attribute1, value=None):
         attribute_id = attribute1.get('attribute_id', 0)
-        values = attribute1.get('attribute', [])
+        values = attribute1.get('values', [])
         if len(values) > 0 and isinstance(values[0], dict) and 'value' in values[0]:
             value = values[0]['value']
         return {attribute_id: value}
@@ -179,13 +163,12 @@ def get_attribute_values(app, scenario, products, client):
     else:
         attribute_values = {}
         app.warn_(f'check attribute_values: {need_attribute_values}')
-    keys = ["height", "depth", "width", "dimension_unit", "weight", "weight_unit", 'pdf_list']
+    keys = ["height", "depth", "width", "dimension_unit", "weight", "weight_unit", 'pdf_list', 'attributes']
     for product in products:
         attribute_value = attribute_values.get(product['product_id'], {})
         for key in keys:
             product[key] = attribute_value.get(key)
-        attributes = attribute_values.get('attributes')
-        product['attributes'] = attributes
+        attributes = product['attributes'] if isinstance(product['attributes'], list) else []
         attr_dicts = {}
         for attribute in attributes:
             attr_dicts.update(get_value_by_id(attribute))
@@ -195,3 +178,53 @@ def get_attribute_values(app, scenario, products, client):
         product['vendor_size'] = attr_dicts[9533] if 9533 in attr_dicts else 0
         product['common_card_id'] = attr_dicts[8292] if 8292 in attr_dicts else None
     return products
+
+
+def get_analytics(app, scenario, products, client):
+    all_metrics = ['hits_view_search', 'hits_view_pdp', 'hits_view', 'hits_tocart_search', 'hits_tocart_pdp',
+                   'hits_tocart', 'session_view_search', 'session_view_pdp', 'session_view', 'conv_tocart_search',
+                   'conv_tocart_pdp', 'conv_tocart', 'revenue', 'returns', 'cancellations', 'ordered_units',
+                   'delivered_units', 'adv_view_pdp', 'adv_view_search_category', 'adv_view_all', 'adv_sum_all',
+                   'position_category', 'postings', 'postings_premium']
+    def_metrics = ["ordered_units", "cancellations", "returns", "revenue", "delivered_units"]
+
+    need_analytics = scenario.get('analytics') if 'analytics' in scenario else False
+    if isinstance(need_analytics, bool):
+        if need_analytics:
+            m_data = {'metrics': def_metrics, 'period': 1, 'period_step_back': 1}
+        else:
+            return []
+    elif isinstance(need_analytics, dict):
+        need_metrics = need_analytics.get('metrics', [])
+        if isinstance(need_metrics, bool):
+            if need_metrics:
+                metrics = def_metrics
+            else:
+                return []
+        elif isinstance(need_metrics, list):
+            if len(need_metrics) != 0:
+                bad_metrics = [x for x in need_metrics if x not in all_metrics]
+                app.warn_(f'this are incorrect metrics:', *bad_metrics) if bad_metrics else None
+                metrics = list(set(need_metrics)-set(bad_metrics))
+                if len(metrics) > 14:
+                    app.warn_('there is too much metrics:', metrics)
+                    return []
+            else:
+                metrics = def_metrics
+        else:
+            app.warn_('there is no a valid list of metrics:', need_metrics)
+            return []
+        if not isinstance(period := scenario.get('period', 1), int) and period > 720 or period < 1:
+            app.warn_(f'check period: {period}')
+            return []
+        if not isinstance(period_step_back := scenario.get('period_step_back', 1), int) and period_step_back > 720 or period_step_back < 1:
+            app.warn_(f'check period_step_back: {period_step_back}')
+            return []
+        m_data = {'metrics': metrics, 'period': period, 'period_step_back': period_step_back}
+    else:
+        app.warn_(f'check analytics: {need_analytics}')
+        return []
+    analytics_data = client.get_analytics(len(products), **m_data)
+    analytics = client.reform_analytics(analytics_data, products, m_data['metrics'])
+    return analytics
+
