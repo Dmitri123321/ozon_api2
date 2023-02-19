@@ -12,45 +12,6 @@
       "url": "https://api.telegram.org/bot",
       "channel_id": "-1001749223608"
   },
-    "rabbit": {
-      "rabbit_dict": {
-        "host": "127.0.0.1",
-        "port": "5672",
-        "login": "admin",
-        "password": "123"
-      },
-      "rabbit_url": "amqp://admin:123@:5672/%2F?heartbeat=10",
-      "durable": true,
-      "queue": "test2",
-      "header": "test2"
-  },
-  "endpoint": {
-    "host": "http://beta.web3dragon.com/twitter",
-    "host1": "http://internal-api:8000/twitter"
-  },
-  "mongodb": {
-      "mongo_base_data": "mongodb://databaseAdmin:databaseAdmin123456@194.87.112.103:27017/admin?ssl=false",
-      "mongo_base_my_local": "mongodb://127.0.0.1:27017"
-  },
-   "mysql": {
-     "local": false,
-      "mysql_base_global": {
-          "host" : "194.87.112.103",
-          "db_name" : "wb",
-          "user" : "wbuser",
-          "password" : "wbpassword",
-          "port" :9000
-      },
-      "mysql_base_local": {
-          "host" : null,
-          "db_name" : null,
-          "user" : null,
-          "password" : null,
-          "port" :null
-      }
-  },
-  "_from": ["mysql", "any_one", "none"],
-  "from": "none",
   "_to": ["mongo", "json, xlsx", "csv", "any_one"],
   "to": "mongo"
 }

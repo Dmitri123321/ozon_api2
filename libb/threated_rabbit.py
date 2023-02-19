@@ -3,12 +3,13 @@ import os
 import time
 import threading
 from typing import Union
-
+from dotenv import load_dotenv
 import pika
 
 lock = threading.Lock()
 index = 0
 threads = []
+load_dotenv("config.env")
 
 
 def simple_rabbit():
@@ -126,13 +127,8 @@ class Rabbit1:
             self._adress = self.app.rabbit_data[0]
             self._queue = self.app.rabbit_data[1]
         else:
-            if self.app.config:
-                self._adress = 'amqp://admin:123@:5672/%2F?heartbeat=10'
-                self._adress = self.app.config['rabbit']
-                self._queue = self.app.config['rabbit']['queue']
-            else:
-                self._adress = os.getenv('rabbit')
-                self._queue = os.getenv('rabbit_queue')
+            self._adress = os.getenv('rabbit')
+            self._queue = os.getenv('rabbit_queue')
 
     def connect(self):
         self._adress: Union[str, dict]

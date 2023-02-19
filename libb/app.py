@@ -2,17 +2,17 @@ import inspect
 import json
 import logging
 import os
-import time
+# import time
 from datetime import date, datetime
 # from datetime import timedelta
-from urllib.parse import urlparse
-import pymysql
 from pymongo import MongoClient
 import sys
 import platform
 import requests
 from pathlib import Path
 from functools import wraps
+from dotenv import load_dotenv
+
 
 path = os.path.dirname(sys.modules['__main__'].__file__).replace('/libb', '')
 
@@ -21,7 +21,7 @@ def decorator1(function):
     @wraps(function)
     def wrapper(*args, **kwargs):
         sms = args[0].sms
-        bot_name = args[0].bot_name
+        bot_name = args[0].config['bot_name']
         current_node = args[0].current_node
         a, b = function(*args, **kwargs)
         if b == 1:
@@ -89,10 +89,8 @@ class App:
         self.path = path
         self.today = date.today()
         self.today_time = datetime.today().replace(minute=0, hour=0, second=0, microsecond=0)
-        self.bot_name = 'ozon_api'
-        self.version = 0.27
+        load_dotenv("config.env")
         check_log_folder(folder='log')
-        self.my_node = ['Z1']
         self.current_node, self.platform = get_current_node()
         self.log_error = logger(name='error', mode='w')
         self.log_debug = logger(name='debug', mode='w')
@@ -100,8 +98,7 @@ class App:
         self.log_info = logger(name='info', mode='w')
         self.info_('logger enabled and writes', self.today)
         self.config = load_config(self)
-        self.info_(f'bot name: {self.bot_name} version: {self.version}')
-        self.my_node = get_my_node()
+        self.info_(f"bot name: {self.config['bot_name']} version: {self.config['version']}")
         self.rabbit_data = connect_rabbit(self)
         self.lock = None
         self.info_('try connect to mongo')
@@ -117,32 +114,24 @@ class App:
         self.collections_list = [self.collection_products, self.collection_prices,
                                  self.collection_stocks, self.collection_categories,
                                  self.collection_analytics, self.collection_transaction,
-                                 self.collection_rating, self.collection_attributes,
-                                 ]
-        self.cat_ids = {}
+                                 self.collection_rating, self.collection_attributes]
         self.info_('load app finished, starting....')
 
     def sms(self, text=None, lang='en', files=None):
         files = [] if files is None else files
-        telegram = {
-            "enable": True,
-            "token": "5434258681:AAHeQR0OFAepvo1nj6p0mPDXGKDjlerC844",
-            "url": "https://api.telegram.org/bot",
-            "channel_id": "-1001749223608"
-        }
-        if telegram['enable']:
+        if self.config.telegram['enable']:
             try:
-                if telegram['token'] and telegram['channel_id']:
+                if self.config.telegram['token'] and self.config.telegram['channel_id']:
                     if text is not None:
                         if lang != 'en':
                             text = text.encode("cp1251").decode("utf-8-sig", 'ignore')
-                        url = '{}{}{}'.format(telegram['url'], telegram['token'], "/sendMessage")
-                        requests.post(url, data={"chat_id": telegram['channel_id'], "text": text})
+                        url = '{}{}{}'.format(self.config.telegram['url'], self.config.telegram['token'], "/sendMessage")
+                        requests.post(url, data={"chat_id": self.config.telegram['channel_id'], "text": text})
                     if len(files) > 0:
                         for f in files:
                             file = {'document': open((path + "/log/" + f), 'rb')}
-                            url = '{}{}{}'.format(telegram['url'], telegram['token'], "/sendDocument")
-                            requests.post(url, files=file, data={"chat_id": telegram['channel_id']})
+                            url = '{}{}{}'.format(self.config.telegram['url'], self.config.telegram['token'], "/sendDocument")
+                            requests.post(url, files=file, data={"chat_id": self.config.telegram['channel_id']})
             except Exception as e:
                 print(e)
                 self.error_('error sending a message in telegram')
@@ -220,20 +209,10 @@ class App:
 
 
 @decorator1
-def detect_mongo_base(self, enable_ssl=False, status=0):
-    if self.config:
-        if self.current_node in self.my_node:
-            mongo_base = self.config['mongodb']['mongo_base_my_local']
-            self.info_('my local base will be used')
-        else:
-            mongo_base = self.config['mongodb']['mongo_base_my_local']
-            self.info_('global base base will be used')
-        if '27017' not in mongo_base:
-            enable_ssl = True
-        mongo_data = {'host': mongo_base, 'tls': enable_ssl, 'tlsAllowInvalidCertificates': True}
-    else:
-        mongo_base = os.getenv('mongo')
-        mongo_data = {'host': mongo_base}
+def detect_mongo_base(self, status=0):
+    mongo_base = os.getenv('mongo')
+    enable_ssl = True if self.current_node in self.config['node'] and '27017' not in mongo_base else False
+    mongo_data = {'host': mongo_base, 'tls': enable_ssl, 'tlsAllowInvalidCertificates': True}
     self.info_(f'mongo_base: {mongo_base}, enable_ssl: {enable_ssl}')
     cluster = MongoClient(**mongo_data)
     try:
@@ -246,79 +225,10 @@ def detect_mongo_base(self, enable_ssl=False, status=0):
 
 
 @decorator1
-def detect_mysql_base(self, status=0, connection=None, limit=1000):
-    def get_adr(base1, status1=True):
-        keys = ['host', 'port', 'user', 'password', 'db_name']
-        base2 = {'host': base1['host'], 'db_name': base1['db_name'], 'user': base1['user'],
-                 'password': base1['password'], 'port': base1['port']}
-        for key in keys:
-            if not base2[key]:
-                status1 = False
-        return base2, status1
-
-    mysql_base = {}
-    if self.current_node in self.my_node:
-        try:
-            if self.config['mysql']['local']:
-                mysql_base, s = get_adr(self.config['mysql']['mysql_base_local'])
-                self.info_('my local mysql base will be used')
-            else:
-                mysql_base, s = get_adr(self.config['mysql']['mysql_base_global'])
-                self.info_('global mysql base will be used')
-            if not s:
-                raise Exception
-        except:
-            self.error_('there are no mysql base data')
-    else:
-        try:
-            base = os.getenv('mysql_base')
-            self.info_(base)
-            if base and '//' in base:
-                url_parse = urlparse(base)
-                base = {'host': url_parse.hostname, 'db_name': url_parse.path.lstrip('/'),
-                        'user': url_parse.username, 'password': url_parse.password, 'port': url_parse.port}
-                mysql_base, s = get_adr(base)
-            else:
-                mysql_base, s = get_adr(dict(base))
-            if not s:
-                raise Exception
-        except:
-            self.warn_('there are no mysql base data in env')
-    if mysql_base is None:
-        return None, 1
-    else:
-        self.info_(f'mysql: {mysql_base}')
-    attempt = 1
-    while attempt < limit:
-        attempt += 1
-        try:
-            connection = pymysql.connect(host=mysql_base['host'], user=mysql_base['user'], password=mysql_base['password'],
-                                         database=mysql_base['db_name'], port=mysql_base['port'])
-            if connection.server_version:
-                self.info_('mysql connection established')
-            else:
-                raise
-            connection.autocommit(True)
-            self.mysql_base = mysql_base
-            break
-        except:
-            self.info_('mysql connection failed')
-            time.sleep(10)
-    else:
-        status = 1
-    return connection, status
-
-
-@decorator1
 def connect_rabbit(self, adress=None, queue=None, status=0):
     try:
-        if self.config:
-            adress = self.config['rabbit']['rabbit_dict']
-            adress = self.config['rabbit']['rabbit_url']
-            queue = self.config['rabbit']['queue']
-        else:
-            adress = os.getenv('rabbit')
-            queue = os.getenv('rabbit_queue')
+        adress = os.getenv('rabbit')
+        queue = os.getenv('rabbit_queue')
         if not adress:
             self.error_('no rabbit adress')
             raise
@@ -349,27 +259,15 @@ def logger(name, mode='a'):
     return log
 
 
-def get_my_node():
-    try:
-        my_node = platform.uname().node.upper()
-    except:
-        my_node = 'AAA'
-    return my_node
-
-
-@decorator1
-def load_config(self, status=0):
-    config = {}
-    if self.platform == 'win':
-        self.info_('try to load config')
-        abs_path_config = next(Path(path).rglob('config.json'))
-        config = self.read_json(abs_path_config)
-        if config:
-            self.info_(f'config.json has been loaded')
-        else:
-            self.info_(f'there are no config.json')
-            status = 1
-    return config, status
+def load_config(self):
+    self.info_('try to load config')
+    abs_path_config = next(Path(path).rglob('config.json'))
+    config = self.read_json(abs_path_config)
+    if config:
+        self.info_(f'config.json has been loaded')
+    else:
+        self.info_(f'there are no config.json')
+    return config
 
 
 def check_log_folder(folder):

@@ -1,7 +1,6 @@
 import pymongo
 
-bases = ['products', 'prices', 'stocks', 'categories', 'analytics', 'transaction', 'raiting',
-         'attributes']
+bases = ['products', 'prices', 'stocks', 'categories', 'attributes', 'analytics', 'transaction', 'raiting']
 
 
 def make_index(app):
@@ -29,7 +28,7 @@ def make_index(app):
                     [('category_id', pymongo.ASCENDING), ('attribute_id', pymongo.ASCENDING)]
                     ]
     for ind, index in enumerate(indexes_list):
-        if ind not in [0, 3, 4, 6, 7]:
+        if ind not in [0, 3, 4, 5, 7]:
             continue
         indexes = app.collections_list[ind].index_information()
         if not check_index(indexes, index):
@@ -50,9 +49,9 @@ def send_items(app, ind, items, user_id, company_id):
             a = result.raw_result['updatedExisting']
             b = bool(result.modified_count)
             c = 'upserted' in result.raw_result
-            app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, product_id:{item['product_id']}")
+            app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, up_key:{up_key}")
         except:
-            app.error_(f"'product_id:'{item['product_id']}, user_id:{user_id}, company_id:{company_id}")
+            app.error_(f"'up_key:'{up_key}, user_id:{user_id}, company_id:{company_id}")
 
 
 def send_items_transactions(app, items):

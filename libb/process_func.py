@@ -3,9 +3,6 @@ from libb.functions import *
 from libb.seller import Seller
 
 
-# from libb.writers import XLSX, CSV
-
-
 def process(app, str_data_set):
     try:
         data_set = json.loads(str_data_set)
@@ -14,16 +11,15 @@ def process(app, str_data_set):
         return
     try:
         analytics, transactions, ratings = [], [], []
+        operations = {0: send_items, 1: insert_many, 2: insert_many, 3: send_items, 4: send_items, 5: bulk_write,
+                      6: insert_many, 7: send_items}
         company_data = data_set.get('company_data')
         scenario = data_set.get('scenario')
-
         if company_data and isinstance(company_data, dict) and scenario and isinstance(scenario, dict):
             for key, value in company_data.items():
                 if not value:
                     app.warn_(f'check client data with {key}:', value)
                     return
-
-            # keys = ['prices', 'stocks', 'ratings', 'categories', 'attributes', 'attribute_values']
 
             client = Seller(app, client_id=company_data['ozon_client_id'], api_key=company_data['api_key'],
                             user_id=company_data['user_id'], company_id=company_data['id'])
@@ -44,55 +40,37 @@ def process(app, str_data_set):
             prices = process_scenario(app, scenario, 'prices', prices)
             stocks = process_scenario(app, scenario, 'stocks', stocks)
             """дополним характеристиками если надо"""
-            attributes = get_attributes(app, scenario, client, categories)
+            attributes = get_attributes(app, scenario, categories, client)
             categories = process_scenario(app, scenario, 'categories', categories)
             """дополним значениями характеристик если надо"""
             products = get_attribute_values(app, scenario, products, client)
-            """получим аналитические данные если надо"""
-            app.info_(' --> analytic')
-            try:
-                analytics = get_analytics(app, scenario, products, client)
-                app.info_(' [v] analytic')
-            except:
-                app.info_(' [x] analytic')
-
-            """получим транзакции если надо"""
-            transaction_data = scenario.get('transactions')
-            if transaction_data and isinstance(transaction_data, dict):
-                period = transaction_data.get('period', 1)
-                if not isinstance(period, int) or period > 720 or period < 1:
-                    app.warn_(f'check period: {transaction_data}')
-                    return
-                period_step_back = transaction_data.get('period_step_back', 1)
-                if not isinstance(period_step_back, int) and period_step_back > 720:
-                    app.warn_(f'check period_step_back: {transaction_data}')
-                    return
-                transaction_list = client.get_transaction_list(period, period_step_back)
-                app.info_('received transaction data')
-                transactions = client.reform_transaction_list(transactions=transaction_list, products=products)
-                app.info_('prepared transaction data')
+            """получим аналитику транзации рейтинг если надо"""
+            key_data = [analytics, transactions, ratings]
+            func_key = {'analytic': get_analytics, 'transactions': get_transactions, 'ratings': get_ratings}
+            for i, key in enumerate(func_key):
+                app.info_(f' --> {key}')
+                try:
+                    key_data[i] = func_key[key](app, scenario, products, client)
+                    app.info_(f' [v] {key}')
+                except:
+                    key_data[i] = []
+                    app.info_(f' [x] {key}')
+            analytics = key_data[0]
+            transactions = key_data[1]
+            ratings = key_data[2]
+            lists_to_write = [products, prices, stocks, categories, attributes, analytics, transactions, ratings]
+            if app.config['to'] == 'json':
+                for list_to_write in lists_to_write:
+                    if list_to_write:
+                        app.write_json_all(items=list_to_write, file_path=f'results/{app.name(list_to_write)}.json',
+                                           abs_path_=app.path)
+            elif app.config['to'] == 'mongo':
+                for key in operations.keys():
+                    if lists_to_write[key]:
+                        app.info_(app.name(lists_to_write[key]), 'try up to mongo')
+                        operations[key](app, key, lists_to_write[key], company_data['user_id'], company_data['id'])
             else:
-                transactions = []
-            if scenario.get('ratings'):
-                ratings = client.get_rating(products)
-                app.info_('received and prepared rating data')
-            lists_to_write = [products, prices, stocks, categories, analytics, transactions,
-                              ratings, attributes]
-            if app.config:
-                if app.config['to'] == 'json':
-                    for list_to_write in lists_to_write:
-                        if list_to_write:
-                            app.write_json_all(items=list_to_write, file_path=f'results/{app.name(list_to_write)}.json',
-                                               abs_path_=app.path)
-                elif app.config['to'] == 'mongo':
-                    pass
-            operations = {0: send_items, 1: insert_many, 2: insert_many, 3: send_items, 4: bulk_write, 5: insert_many,
-                          6: send_items, 7: send_items
-                          }
-            for key in operations.keys():
-                if lists_to_write[key]:
-                    app.info_(app.name(lists_to_write[key]), 'try up to mongo')
-                    operations[key](app, key, lists_to_write[key], company_data['user_id'], company_data['id'])
+                pass
 
         else:
             app.warn_('wrong data_set:', data_set)
@@ -134,7 +112,7 @@ def process_scenario(app, scenario, key, mass):
     return result
 
 
-def get_attributes(app, scenario, client, categories):
+def get_attributes(app, scenario, categories, client):
     if need_attributes := scenario.get('attributes', False) is True:
         attributes = client.get_attributes(categories=categories)
     elif need_attributes is False:
@@ -204,21 +182,22 @@ def get_analytics(app, scenario, products, client):
         elif isinstance(need_metrics, list):
             if len(need_metrics) != 0:
                 bad_metrics = [x for x in need_metrics if x not in all_metrics]
-                app.warn_(f'this are incorrect metrics:', *bad_metrics) if bad_metrics else None
-                metrics = list(set(need_metrics)-set(bad_metrics))
+                app.warn_(f'this are incorrect analytics metrics:', *bad_metrics) if bad_metrics else None
+                metrics = list(set(need_metrics) - set(bad_metrics))
                 if len(metrics) > 14:
-                    app.warn_('there is too much metrics:', metrics)
+                    app.warn_('there is too much analytics metrics:', metrics)
                     return []
             else:
                 metrics = def_metrics
         else:
             app.warn_('there is no a valid list of metrics:', need_metrics)
             return []
-        if not isinstance(period := scenario.get('period', 1), int) and period > 720 or period < 1:
-            app.warn_(f'check period: {period}')
+        if not isinstance(period := need_analytics.get('period', 1), int) and period > 720 or period < 1:
+            app.warn_(f'check analytics period: {period}')
             return []
-        if not isinstance(period_step_back := scenario.get('period_step_back', 1), int) and period_step_back > 720 or period_step_back < 1:
-            app.warn_(f'check period_step_back: {period_step_back}')
+        if not isinstance(period_step_back := need_analytics.get('period_step_back', 1),
+                          int) and period_step_back > 720 or period_step_back < 1:
+            app.warn_(f'check analytics period_step_back: {period_step_back}')
             return []
         m_data = {'metrics': metrics, 'period': period, 'period_step_back': period_step_back}
     else:
@@ -228,3 +207,38 @@ def get_analytics(app, scenario, products, client):
     analytics = client.reform_analytics(analytics_data, products, m_data['metrics'])
     return analytics
 
+
+def get_transactions(app, scenario, products, client):
+    need_transactions = scenario.get('transactions') if 'transactions' in scenario else False
+    if isinstance(need_transactions, bool):
+        if need_transactions:
+            m_data = {'period': 1, 'period_step_back': 1}
+        else:
+            return []
+    elif isinstance(need_transactions, dict):
+        if not isinstance(period := need_transactions.get('period', 1), int) and period > 720 or period < 1:
+            app.warn_(f'check transactions period: {period}')
+            return []
+        if not isinstance(period_step_back := need_transactions.get('period_step_back', 1),
+                          int) and period_step_back > 720 or period_step_back < 1:
+            app.warn_(f'check transactions period_step_back: {period_step_back}')
+            return []
+        m_data = {'period': period, 'period_step_back': period_step_back}
+    else:
+        app.warn_(f'check transactions: {need_transactions}')
+        return []
+    transaction_list = client.get_transaction_list(**m_data)
+    transactions = client.reform_transaction_list(transactions=transaction_list, products=products)
+    return transactions
+
+
+def get_ratings(app, scenario, products, client):
+    if isinstance(need_ratings := scenario.get('ratings', False), bool):
+        if need_ratings:
+            ratings = client.get_rating(products)
+        else:
+            ratings = []
+    else:
+        ratings = []
+        app.warn_(f'check ratings: {need_ratings}')
+    return ratings
