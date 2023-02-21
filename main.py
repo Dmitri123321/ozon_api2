@@ -2,7 +2,6 @@ from libb.app import App
 from libb.functions import make_index
 from libb.process_func import process
 from libb.threated_rabbit import ReconnectingRabbit
-from repository.simple_publisher import simple_publisher
 
 
 def main(app):

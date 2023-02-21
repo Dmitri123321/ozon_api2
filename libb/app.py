@@ -110,7 +110,7 @@ class App:
         self.collection_transaction = cluster.OzonData.transaction
         self.collection_rating = cluster.OzonData.rating
         self.collection_categories = cluster.OzonData.categories
-        self.collection_attributes = cluster.OzonData.product_properties
+        self.collection_attributes = cluster.OzonData.attributes
         self.collections_list = [self.collection_products, self.collection_prices,
                                  self.collection_stocks, self.collection_categories,
                                  self.collection_attributes, self.collection_analytics,

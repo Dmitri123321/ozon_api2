@@ -27,9 +27,7 @@ class Seller:
         self.company_id = company_id
         self.headers = {"Client-Id": f"{self.client_id}", "Api-Key": f"{self.api_key}"}
         self.updated_at = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-
-    def updated_at(self):
-        return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        self.today = date.today()
 
     def get_product_ids(self, last_id=""):
         url = 'https://api-seller.ozon.ru/v2/product/list'
@@ -68,7 +66,6 @@ class Seller:
         keys_for_stock = ['coming', 'present', 'reserved']
         removed_keys = ['commissions', 'recommended_price', 'min_price', 'sources', 'errors', 'price_index',
                         'service_type', 'sources', 'state', 'status', 'vat', 'visibility_details']
-        updated_at = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         prices, products, stocks = [], [], []
         cats = {}
         for item in products_info:
@@ -82,7 +79,7 @@ class Seller:
             stock = {x: item.get('stocks', {}).get(x, 0) for x in keys_for_stock}
             offer_id_short = l[0] if isinstance(l := item['offer_id'].split('/'), list) and len(l) > 0 else ''
             y = {'product_id': product_id, 'offer_id_short': offer_id_short,
-                 'date': str(date.today()), 'updated_at': updated_at}
+                 'date': str(self.today), 'updated_at': self.updated_at}
             price.update(y)
             stock.update(y)
             if item['category_id'] not in cats:
@@ -111,11 +108,10 @@ class Seller:
         }
         items, total, last_id = get_helper2(connect1(self, url, self.headers, data))
         name = items[0].get('title') if len(items) > 0 and isinstance(items[0], dict) else None
-        category = {'category_id': cat_id, 'category_name': name, 'updated_at': self.updated_at()}
+        category = {'category_id': cat_id, 'category_name': name, 'updated_at': self.updated_at}
         return category
 
     def get_attributes(self, categories):
-        updated_at = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         categories_list = [x['category_id'] for x in categories]
         url = 'https://api-seller.ozon.ru/v3/category/attribute'
         data = {
@@ -131,7 +127,7 @@ class Seller:
             for attribute in attributes:
                 attribute['category_id'] = category_id
                 attribute['attribute_id'] = attribute.pop('id')
-                attribute['updated_at'] = updated_at
+                attribute['updated_at'] = self.updated_at
                 new_attributes.append(attribute)
         return new_attributes
 
@@ -181,9 +177,8 @@ class Seller:
             postings — отправления,
             postings_premium — отправления с подпиской Premium.
         """
-        today = datetime.today()
-        date_to = datetime.strftime(today - timedelta(period_step_back), '%Y-%m-%d')
-        date_from = datetime.strftime(today - timedelta(period_step_back + period - 1), '%Y-%m-%d')
+        date_to = datetime.strftime(self.today - timedelta(period_step_back), '%Y-%m-%d')
+        date_from = datetime.strftime(self.today - timedelta(period_step_back + period - 1), '%Y-%m-%d')
         """ 
             dimension:
             sku — идентификатор товара,
@@ -223,12 +218,12 @@ class Seller:
                  'vendor_size', 'common_card_id']
         list2 = ['coming', 'present', 'reserved']
         list3 = ['marketing_price', 'min_ozon_price', 'old_price', 'premium_price', 'price']
-        x = {'date': datetime.today(), 'user_id': self.user_id, 'company_id': self.company_id,
-             'updated_at': self.updated_at()}
+        x = {'date': str(self.today), 'user_id': self.user_id, 'company_id': self.company_id,
+             'updated_at': self.updated_at}
         analytics = []
         anal_dict = {y['dimensions'][0]['id']: y['metrics'] for y in analytics_data}
         for product in products_data:
-            analytic = {'updated_at': self.updated_at()}
+            analytic = {'updated_at': self.updated_at}
             for key in list1:
                 analytic[key] = product[key] if key in product else None
             for key in list2:
@@ -251,9 +246,8 @@ class Seller:
     def get_transaction_list(self, period, period_step_back, page_count=1, page=1):
         """пока не понятно что с периодом , отдает больше чем за 3 месяца"""
         url = 'https://api-seller.ozon.ru/v3/finance/transaction/list'
-        today = datetime.today()
-        date_to = datetime.strftime(today - timedelta(period_step_back), '%Y-%m-%dT%H:%M:%S.%f')[0:23] + 'Z'
-        date_from = datetime.strftime(today - timedelta(period_step_back + period - 1), '%Y-%m-%dT%H:%M:%S.%fZ')[0:23] + 'Z'
+        date_to = datetime.strftime(self.today - timedelta(period_step_back), '%Y-%m-%dT%H:%M:%S.%f')[0:23] + 'Z'
+        date_from = datetime.strftime(self.today - timedelta(period_step_back + period - 1), '%Y-%m-%dT%H:%M:%S.%fZ')[0:23] + 'Z'
         operations_list = []
         while page <= page_count:
             data = {
@@ -289,7 +283,7 @@ class Seller:
             else:
                 transaction['offer_id_short'] = None
                 transaction['product_id'] = None
-            transaction['updated_at'] = self.updated_at()
+            transaction['updated_at'] = self.updated_at
         return transactions
 
     def get_rating(self, reform_json):
@@ -307,7 +301,7 @@ class Seller:
             ratings += ratings_part
         for rating in ratings:
             rating['product_id'] = rating.pop('sku')
-            rating['updated_at'] = self.updated_at()
+            rating['updated_at'] = self.updated_at
         return ratings
 
     def get_stocks_of_warehouse(self):
