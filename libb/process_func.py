@@ -10,9 +10,8 @@ def process(app, str_data_set):
         app.warn_(f'this is not correct json {str_data_set}')
         return
     try:
-        analytics, transactions, ratings = [], [], []
-        operations = {0: send_items, 1: insert_many, 2: insert_many, 3: send_items, 4: send_items, 5: bulk_write,
-                      6: insert_many, 7: send_items}
+        operations = {0: bulk_write, 1: bulk_write, 2: bulk_write, 3: bulk_write, 4: bulk_write, 5: bulk_write,
+                      6: insert_many, 7: bulk_write}
         company_data = data_set.get('company_data')
         scenario = data_set.get('scenario')
         if company_data and isinstance(company_data, dict) and scenario and isinstance(scenario, dict):
@@ -45,15 +44,15 @@ def process(app, str_data_set):
             """дополним значениями характеристик если надо"""
             products = get_attribute_values(app, scenario, products, client)
             """получим аналитику транзации рейтинг если надо"""
-            key_data = [analytics, transactions, ratings]
+            key_data = []
             func_key = {'analytic': get_analytics, 'transactions': get_transactions, 'ratings': get_ratings}
             for i, key in enumerate(func_key):
                 app.info_(f' --> {key}')
                 try:
-                    key_data[i] = func_key[key](app, scenario, products, client)
+                    key_data.append(func_key[key](app, scenario, products, client))
                     app.info_(f' [v] {key}')
                 except:
-                    key_data[i] = []
+                    key_data.append([])
                     app.info_(f' [x] {key}')
             analytics = key_data[0]
             transactions = key_data[1]
@@ -67,7 +66,7 @@ def process(app, str_data_set):
             elif app.config['to'] == 'mongo':
                 for key in operations.keys():
                     if lists_to_write[key]:
-                        app.info_(app.name(lists_to_write[key]), 'try up to mongo')
+                        app.info_('-->> to mongo', app.name(lists_to_write[key]))
                         operations[key](app, key, lists_to_write[key], company_data['user_id'], company_data['id'])
             else:
                 pass

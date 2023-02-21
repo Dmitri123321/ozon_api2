@@ -20,15 +20,15 @@ def make_index(app):
 
     indexes_list = ['product_id',
                     'product_id',
-                    'product_id',
-                    'category_id',
                     [('date', pymongo.ASCENDING), ('product_id', pymongo.ASCENDING)],
-                    'operation_id',
+                    'category_id',
+                    'attribute_id',
+                    [('date', pymongo.ASCENDING), ('product_id', pymongo.ASCENDING)],
                     'product_id',
-                    [('category_id', pymongo.ASCENDING), ('attribute_id', pymongo.ASCENDING)]
+                    [('date', pymongo.ASCENDING), ('product_id', pymongo.ASCENDING)]
                     ]
     for ind, index in enumerate(indexes_list):
-        if ind not in [0, 3, 4, 5, 7]:
+        if ind in [6]:
             continue
         indexes = app.collections_list[ind].index_information()
         if not check_index(indexes, index):
@@ -36,33 +36,6 @@ def make_index(app):
             app.info_(f'index >> {index} was created')
         else:
             app.info_(f'index >> {index} already exists')
-
-
-def send_items(app, ind, items, user_id, company_id):
-    for item in items:
-        try:
-            if 'product_id' in item:
-                up_key = {'product_id': item['product_id']}
-            else:
-                up_key = {'category_id': item['category_id']}
-            result = app.collections_list[ind].update_one(up_key, {'$set': item}, upsert=True)
-            a = result.raw_result['updatedExisting']
-            b = bool(result.modified_count)
-            c = 'upserted' in result.raw_result
-            app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, up_key:{up_key}")
-        except:
-            app.error_(f"'up_key:'{up_key}, user_id:{user_id}, company_id:{company_id}")
-
-
-def send_items_transactions(app, items):
-    for item in items:
-        try:
-            result = app.collection_transaction.insert_one(item)
-            # print(result.__dir__())
-            d = bool(result.inserted_id)
-            app.info_(f"inserted:{d}, obj:{item['operation_id']}")
-        except:
-            app.error_('operation_id:', item['operation_id'])
 
 
 def insert_many(app, ind, items, user_id, company_id):
@@ -76,10 +49,29 @@ def insert_many(app, ind, items, user_id, company_id):
 
 def bulk_write(app, ind, items, user_id, company_id):
     try:
-        list_write = [pymongo.UpdateOne({"date": item['date'], "product_id": item['product_id']},
-                                        {'$set': item},
-                                        upsert=True)
-                      for item in items]
+        if ind == 3:
+            # a=2
+            list_write = [pymongo.UpdateOne({"category_id": item['category_id']},
+                                            {'$set': item},
+                                            upsert=True)
+                          for item in items]
+        elif ind == 4:
+            # a=2
+            list_write = [pymongo.UpdateOne({"attribute_id": item['attribute_id']},
+                                            {'$set': item},
+                                            upsert=True)
+                          for item in items]
+        elif ind == 7:
+            list_write = [pymongo.UpdateOne({"product_id": item['product_id']},
+                                            {'$set': item},
+                                            upsert=True)
+                          for item in items]
+        else:
+            list_write = [pymongo.UpdateOne({"date": item['date'], "product_id": item['product_id']},
+                                            {'$set': item},
+                                            upsert=True)
+                          for item in items]
+
         result = app.collections_list[ind].bulk_write(list_write)
         f = True if result.matched_count == len(items) else False
         g = True if result.upserted_count == len(items) else False
@@ -87,48 +79,3 @@ def bulk_write(app, ind, items, user_id, company_id):
     except:
         app.error_(f"user_id:{user_id}, company_id:{company_id}")
         pass
-
-
-def send_stocks(app, items):
-    for item in items:
-        try:
-            state = {
-                "date": item["date"],
-                "coming": item["coming"],
-                "present": item["present"],
-                "reserved": item["reserved"],
-            }
-            result = app.collection_stocks.update_one(
-                {'product_id': item['product_id']},
-                {'$push': {'state': state},
-                 '$set': {'offer_id_short': item['offer_id_short']}},
-                upsert=True)
-            a = result.raw_result['updatedExisting']
-            b = bool(result.modified_count)
-            c = 'upserted' in result.raw_result
-            app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, product_id:{item['product_id']}")
-        except:
-            app.error_('product_id:', item['product_id'])
-
-
-def send_prices(app, items):
-    for item in items:
-        try:
-            state = {
-                "date": item["date"],
-                "marketing_price": item["marketing_price"],
-                "min_ozon_price": item["min_ozon_price"],
-                "old_price": item["old_price"],
-                "premium_price": item["premium_price"],
-                "price": item["price"]
-            }
-            result = app.collection_prices.update_one(
-                {'product_id': item['product_id']},
-                {'$push': {'state': state}, '$set': {'offer_id_short': item['offer_id_short']}},
-                upsert=True)
-            a = result.raw_result['updatedExisting']
-            b = bool(result.modified_count)
-            c = 'upserted' in result.raw_result
-            app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, product_id:{item['product_id']}")
-        except:
-            app.error_('product_id:', item['product_id'])

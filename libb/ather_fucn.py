@@ -125,3 +125,53 @@ def analytisc_helper(analytisc_data):
         clear_items.append(new_item)
     # pprint(clear_items)
     return clear_items
+
+
+def send_prices(app, items):
+    for item in items:
+        try:
+            state = {
+                "date": item["date"],
+                "marketing_price": item["marketing_price"],
+                "min_ozon_price": item["min_ozon_price"],
+                "old_price": item["old_price"],
+                "premium_price": item["premium_price"],
+                "price": item["price"]
+            }
+            result = app.collection_prices.update_one(
+                {'product_id': item['product_id']},
+                {'$push': {'state': state}, '$set': {'offer_id_short': item['offer_id_short']}},
+                upsert=True)
+            a = result.raw_result['updatedExisting']
+            b = bool(result.modified_count)
+            c = 'upserted' in result.raw_result
+            app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, product_id:{item['product_id']}")
+        except:
+            app.error_('product_id:', item['product_id'])
+
+
+def send_items_transactions(app, items):
+    for item in items:
+        try:
+            result = app.collection_transaction.insert_one(item)
+            # print(result.__dir__())
+            d = bool(result.inserted_id)
+            app.info_(f"inserted:{d}, obj:{item['operation_id']}")
+        except:
+            app.error_('operation_id:', item['operation_id'])
+
+
+def send_items(app, ind, items, user_id, company_id):
+    for item in items:
+        try:
+            if 'product_id' in item:
+                up_key = {'product_id': item['product_id']}
+            else:
+                up_key = {'category_id': item['category_id']}
+            result = app.collections_list[ind].update_one(up_key, {'$set': item}, upsert=True)
+            a = result.raw_result['updatedExisting']
+            b = bool(result.modified_count)
+            c = 'upserted' in result.raw_result
+            app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, up_key:{up_key}")
+        except:
+            app.error_(f"'up_key:'{up_key}, user_id:{user_id}, company_id:{company_id}")

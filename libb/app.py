@@ -113,8 +113,8 @@ class App:
         self.collection_attributes = cluster.OzonData.product_properties
         self.collections_list = [self.collection_products, self.collection_prices,
                                  self.collection_stocks, self.collection_categories,
-                                 self.collection_analytics, self.collection_transaction,
-                                 self.collection_rating, self.collection_attributes]
+                                 self.collection_attributes, self.collection_analytics,
+                                 self.collection_transaction, self.collection_rating]
         self.info_('load app finished, starting....')
 
     def sms(self, text=None, lang='en', files=None):
