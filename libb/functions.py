@@ -19,7 +19,7 @@ def make_index(app):
         return result
 
     indexes_list = ['product_id',
-                    'product_id',
+                    [('date', pymongo.ASCENDING), ('product_id', pymongo.ASCENDING)],
                     [('date', pymongo.ASCENDING), ('product_id', pymongo.ASCENDING)],
                     'category_id',
                     'attribute_id',
@@ -61,7 +61,7 @@ def bulk_write(app, ind, items, user_id, company_id):
                                             {'$set': item},
                                             upsert=True)
                           for item in items]
-        elif ind == 7:
+        elif ind in [0, 7]:
             list_write = [pymongo.UpdateOne({"product_id": item['product_id']},
                                             {'$set': item},
                                             upsert=True)

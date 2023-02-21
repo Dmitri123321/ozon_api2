@@ -66,8 +66,10 @@ def process(app, str_data_set):
             elif app.config['to'] == 'mongo':
                 for key in operations.keys():
                     if lists_to_write[key]:
-                        app.info_('-->> to mongo', app.name(lists_to_write[key]))
+                        app.info_('-->>try to upload to mongo:', app.name(lists_to_write[key]))
                         operations[key](app, key, lists_to_write[key], company_data['user_id'], company_data['id'])
+                    else:
+                        app.info_('-->> skipp:', app.name(lists_to_write[key]))
             else:
                 pass
 

@@ -1,4 +1,4 @@
-import datetime as dt
+from datetime import date, datetime, timedelta
 import requests
 import json
 import time
@@ -25,10 +25,8 @@ class Seller:
         self.api_key = api_key
         self.user_id = user_id
         self.company_id = company_id
-        self.headers = {
-            "Client-Id": f"{self.client_id}",
-            "Api-Key": f"{self.api_key}"
-        }
+        self.headers = {"Client-Id": f"{self.client_id}", "Api-Key": f"{self.api_key}"}
+        self.updated_at = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 
     def updated_at(self):
         return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
@@ -84,7 +82,7 @@ class Seller:
             stock = {x: item.get('stocks', {}).get(x, 0) for x in keys_for_stock}
             offer_id_short = l[0] if isinstance(l := item['offer_id'].split('/'), list) and len(l) > 0 else ''
             y = {'product_id': product_id, 'offer_id_short': offer_id_short,
-                 'date': self.app.today_time, 'updated_at': updated_at}
+                 'date': str(date.today()), 'updated_at': updated_at}
             price.update(y)
             stock.update(y)
             if item['category_id'] not in cats:
@@ -113,7 +111,7 @@ class Seller:
         }
         items, total, last_id = get_helper2(connect1(self, url, self.headers, data))
         name = items[0].get('title') if len(items) > 0 and isinstance(items[0], dict) else None
-        category = {'category_id': cat_id, 'category_name': name}
+        category = {'category_id': cat_id, 'category_name': name, 'updated_at': self.updated_at()}
         return category
 
     def get_attributes(self, categories):
@@ -183,9 +181,9 @@ class Seller:
             postings — отправления,
             postings_premium — отправления с подпиской Premium.
         """
-        today = dt.datetime.today()
-        date_to = dt.datetime.strftime(today - dt.timedelta(period_step_back), '%Y-%m-%d')
-        date_from = dt.datetime.strftime(today - dt.timedelta(period_step_back + period - 1), '%Y-%m-%d')
+        today = datetime.today()
+        date_to = datetime.strftime(today - timedelta(period_step_back), '%Y-%m-%d')
+        date_from = datetime.strftime(today - timedelta(period_step_back + period - 1), '%Y-%m-%d')
         """ 
             dimension:
             sku — идентификатор товара,
@@ -225,12 +223,12 @@ class Seller:
                  'vendor_size', 'common_card_id']
         list2 = ['coming', 'present', 'reserved']
         list3 = ['marketing_price', 'min_ozon_price', 'old_price', 'premium_price', 'price']
-        x = {'date': self.app.today_time, 'user_id': self.user_id, 'company_id': self.company_id,
+        x = {'date': datetime.today(), 'user_id': self.user_id, 'company_id': self.company_id,
              'updated_at': self.updated_at()}
         analytics = []
         anal_dict = {y['dimensions'][0]['id']: y['metrics'] for y in analytics_data}
         for product in products_data:
-            analytic = {}
+            analytic = {'updated_at': self.updated_at()}
             for key in list1:
                 analytic[key] = product[key] if key in product else None
             for key in list2:
@@ -245,7 +243,7 @@ class Seller:
                     error_metrics.append(metric)
                     analytic[metric] = None
             if error_metrics:
-                self.app.warn_('error metrics:', *error_metrics, product['product_id'],  self.company_id)
+                self.app.warn_('error metrics:', *error_metrics, product['product_id'], self.company_id)
             analytic.update(x)
             analytics.append(analytic)
         return analytics
@@ -253,14 +251,9 @@ class Seller:
     def get_transaction_list(self, period, period_step_back, page_count=1, page=1):
         """пока не понятно что с периодом , отдает больше чем за 3 месяца"""
         url = 'https://api-seller.ozon.ru/v3/finance/transaction/list'
-        today = dt.datetime.today()
-        date_to = dt.datetime.strftime(today - dt.timedelta(period_step_back), '%Y-%m-%dT%H:%M:%S.%f')[
-                  0:23] + 'Z'
-        date_from = dt.datetime.strftime(today - dt.timedelta(period_step_back + period - 1),
-                                         '%Y-%m-%dT%H:%M:%S.%fZ')[0:23] + 'Z'
-        # today = dt.datetime.today()
-        # date_to = dt.datetime.strftime(today - dt.timedelta(period_step_back), '%Y-%m-%d')
-        # date_from = dt.datetime.strftime(today - dt.timedelta(period_step_back + period - 1), '%Y-%m-%d')
+        today = datetime.today()
+        date_to = datetime.strftime(today - timedelta(period_step_back), '%Y-%m-%dT%H:%M:%S.%f')[0:23] + 'Z'
+        date_from = datetime.strftime(today - timedelta(period_step_back + period - 1), '%Y-%m-%dT%H:%M:%S.%fZ')[0:23] + 'Z'
         operations_list = []
         while page <= page_count:
             data = {
@@ -296,6 +289,7 @@ class Seller:
             else:
                 transaction['offer_id_short'] = None
                 transaction['product_id'] = None
+            transaction['updated_at'] = self.updated_at()
         return transactions
 
     def get_rating(self, reform_json):
@@ -313,6 +307,7 @@ class Seller:
             ratings += ratings_part
         for rating in ratings:
             rating['product_id'] = rating.pop('sku')
+            rating['updated_at'] = self.updated_at()
         return ratings
 
     def get_stocks_of_warehouse(self):

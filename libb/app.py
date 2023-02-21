@@ -49,7 +49,7 @@ def decorator2(function):
         try:
             text = ''.join("{} {}".format(x, '') for x in args[1:])
             func(text, exc_info=True) if typ == 'error' else func(text)
-            text = {"msg": f"{text:50.50}", "file": f"{file_name:20}",
+            text = {"msg": f"{text:100.100}", "file": f"{file_name:20}",
                     "func": f"{func_name:25}", "level": f"{typ:7}"}
             text1 = json.dumps(text)
         except:
