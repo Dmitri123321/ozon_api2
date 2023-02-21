@@ -172,33 +172,36 @@ def get_analytics(app, scenario, products, client):
         else:
             return []
     elif isinstance(need_analytics, dict):
-        need_metrics = need_analytics.get('metrics', [])
-        if isinstance(need_metrics, bool):
-            if need_metrics:
-                metrics = def_metrics
-            else:
-                return []
-        elif isinstance(need_metrics, list):
-            if len(need_metrics) != 0:
-                bad_metrics = [x for x in need_metrics if x not in all_metrics]
-                app.warn_(f'this are incorrect analytics metrics:', *bad_metrics) if bad_metrics else None
-                metrics = list(set(need_metrics) - set(bad_metrics))
-                if len(metrics) > 14:
-                    app.warn_('there is too much analytics metrics:', metrics)
+        if need_analytics:
+            need_metrics = need_analytics.get('metrics', [])
+            if isinstance(need_metrics, bool):
+                if need_metrics:
+                    metrics = def_metrics
+                else:
                     return []
+            elif isinstance(need_metrics, list):
+                if len(need_metrics) != 0:
+                    bad_metrics = [x for x in need_metrics if x not in all_metrics]
+                    app.warn_(f'this are incorrect analytics metrics:', *bad_metrics) if bad_metrics else None
+                    metrics = list(set(need_metrics) - set(bad_metrics))
+                    if len(metrics) > 14:
+                        app.warn_('there is too much analytics metrics:', metrics)
+                        return []
+                else:
+                    metrics = def_metrics
             else:
-                metrics = def_metrics
+                app.warn_('there is no a valid list of metrics:', need_metrics)
+                return []
+            if not isinstance(period := need_analytics.get('period', 1), int) and period > 720 or period < 1:
+                app.warn_(f'check analytics period: {period}')
+                return []
+            if not isinstance(period_step_back := need_analytics.get('period_step_back', 1),
+                              int) and period_step_back > 720 or period_step_back < 1:
+                app.warn_(f'check analytics period_step_back: {period_step_back}')
+                return []
+            m_data = {'metrics': metrics, 'period': period, 'period_step_back': period_step_back}
         else:
-            app.warn_('there is no a valid list of metrics:', need_metrics)
             return []
-        if not isinstance(period := need_analytics.get('period', 1), int) and period > 720 or period < 1:
-            app.warn_(f'check analytics period: {period}')
-            return []
-        if not isinstance(period_step_back := need_analytics.get('period_step_back', 1),
-                          int) and period_step_back > 720 or period_step_back < 1:
-            app.warn_(f'check analytics period_step_back: {period_step_back}')
-            return []
-        m_data = {'metrics': metrics, 'period': period, 'period_step_back': period_step_back}
     else:
         app.warn_(f'check analytics: {need_analytics}')
         return []

@@ -7,7 +7,6 @@ from repository.simple_publisher import simple_publisher
 
 def main(app):
     try:
-        simple_publisher()
         make_index(app)
         ReconnectingRabbit(app, process).run()
     except:
