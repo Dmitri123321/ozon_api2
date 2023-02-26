@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta
+from datetime import date
 import requests
 import json
 import time
@@ -73,7 +73,7 @@ class Seller:
             price = {}
             for i in keys_for_price:
                 try:
-                    price[i] = float(item.get(i, 0))
+                    price[i] = float(item.get(i, 0)) if i in [1, 3, 4] else int(item.get(i, 0))
                 except:
                     price[i] = 0
             stock = {x: item.get('stocks', {}).get(x, 0) for x in keys_for_stock}
@@ -148,7 +148,7 @@ class Seller:
                 break
         return {x['id']: x for x in all_items}
 
-    def get_analytics(self, count_ids, metrics, period, period_step_back, len_result=1000, offset=0):
+    def get_analytics(self, count_ids, metrics, date_from, date_to, len_result=1000, offset=0):
         url = 'https://api-seller.ozon.ru/v1/analytics/data'
         """
             metrics:
@@ -177,8 +177,6 @@ class Seller:
             postings — отправления,
             postings_premium — отправления с подпиской Premium.
         """
-        date_to = datetime.strftime(self.today - timedelta(period_step_back), '%Y-%m-%d')
-        date_from = datetime.strftime(self.today - timedelta(period_step_back + period - 1), '%Y-%m-%d')
         """ 
             dimension:
             sku — идентификатор товара,
@@ -201,7 +199,7 @@ class Seller:
                 "date_to": date_to,
                 "metrics": metrics,
                 "filters": [],
-                "dimension": ["sku"],
+                "dimension": ["sku", "day"],
                 "limit": 1000,
                 "offset": offset
             }
@@ -218,43 +216,45 @@ class Seller:
                  'vendor_size', 'common_card_id']
         list2 = ['coming', 'present', 'reserved']
         list3 = ['marketing_price', 'min_ozon_price', 'old_price', 'premium_price', 'price']
-        x = {'date': str(self.today), 'user_id': self.user_id, 'company_id': self.company_id,
-             'updated_at': self.updated_at}
-        analytics = []
-        anal_dict = {y['dimensions'][0]['id']: y['metrics'] for y in analytics_data}
+        product_dict = {}
         for product in products_data:
-            analytic = {'updated_at': self.updated_at}
+            productic = {'user_id': self.user_id, 'company_id': self.company_id, 'updated_at': self.updated_at}
             for key in list1:
-                analytic[key] = product[key] if key in product else None
+                productic[key] = product[key] if key in product else None
             for key in list2:
-                analytic[key] = product['stocks'][key] if key in product['stocks'] else 0
+                productic[key] = product['stocks'][key] if key in product['stocks'] else 0
             for key in list3:
-                analytic[key] = product['price'][key] if key in product['price'] else 0
-            error_metrics = []
-            for i, metric in enumerate(metrics):
-                try:
-                    analytic[metric] = anal_dict[str(product['fbo_sku'])][i]
-                except:
-                    error_metrics.append(metric)
-                    analytic[metric] = None
-            if error_metrics:
-                self.app.warn_('error metrics:', *error_metrics, product['product_id'], self.company_id)
-            analytic.update(x)
-            analytics.append(analytic)
+                productic[key] = product['price'][key] if key in product['price'] else 0
+            product_dict[str(product['fbo_sku'])] = productic
+        analytics = []
+        for analy in analytics_data:
+            if len(analy.get('dimensions', [])) == 2:
+                fbo_sku = analy['dimensions'][0]['id']
+                analytic = {'date': analy['dimensions'][1]['id']}
+                analytic.update(product_dict.get(fbo_sku, {}))
+                error_metrics = []
+                for i, metric in enumerate(metrics):
+                    try:
+                        analytic[metric] = analy['metrics'][i]
+                    except:
+                        error_metrics.append(metric)
+                        analytic[metric] = None
+                if error_metrics:
+                    self.app.warn_('error metrics:', analytic['product_id'], self.company_id)
+                analytics.append(analytic)
+        del analytics_data, products_data, metrics, product_dict
         return analytics
 
-    def get_transaction_list(self, period, period_step_back, page_count=1, page=1):
+    def get_transaction_list(self, date_from, date_to, page=1):
         """пока не понятно что с периодом , отдает больше чем за 3 месяца"""
         url = 'https://api-seller.ozon.ru/v3/finance/transaction/list'
-        date_to = datetime.strftime(self.today - timedelta(period_step_back), '%Y-%m-%dT%H:%M:%S.%f')[0:23] + 'Z'
-        date_from = datetime.strftime(self.today - timedelta(period_step_back + period - 1), '%Y-%m-%dT%H:%M:%S.%fZ')[0:23] + 'Z'
         operations_list = []
-        while page <= page_count:
+        while True:
             data = {
                 "filter": {
                     "date": {
-                        "from": date_from,
-                        "to": date_to
+                        "from": '{}{}'.format(date_from, 'T00:00:00.000Z'),
+                        "to": '{}{}'.format(date_to, 'T00:00:00.000Z')
                     },
                     "operation_type": [],
                     "posting_number": "",

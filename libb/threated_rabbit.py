@@ -10,6 +10,7 @@ lock = threading.Lock()
 index = 0
 threads = []
 load_dotenv("config.env")
+is_messge = 0
 
 
 def simple_rabbit():
@@ -176,25 +177,26 @@ class Rabbit1:
 
     def starting_consume(self):
         self._consumer_tag = self._channel.basic_consume(queue=self._queue, on_message_callback=self.on_message)
-        self.app.info_('waiting for message')
+        self.app.info_('ready to listen')
         self._channel.start_consuming()
 
     def stop(self):
         self.app.warn_('rabbit connection stoping')
-        with self.app.lock:
-            try:
-                self._channel.close()
-                self._connection.close()
-                self.app.warn_('rabbit connection stoped')
-            except:
-                self.app.warn_('rabbit connection was broken yet')
+        self._is_running = False
+        # with self.app.lock:
+        try:
+            self._channel.close()
+            self._connection.close()
+            self.app.warn_('rabbit connection stoped')
+        except:
+            self.app.warn_('rabbit connection was broken yet')
 
     def do_work(self, *args):
+        global is_messge
         delivery_tag = args[0]
         channel = args[1]
         body = args[2].decode()
-        current_t = threading.current_thread()
-        self.app.info_(f"thread:{current_t}, received mess:{body}")
+        self.app.info_(f"started thread:{threading.current_thread()}")
         self.func(self.app, body)
         if self._frames_received <= self._connection._impl.frames_received:
             self._frames_received = self._connection._impl.frames_received
@@ -206,6 +208,7 @@ class Rabbit1:
             self.app.warn_('frames_sent not increase')
         self.app.info_(f'frames sent: {self._frames_sent}, frames received: {self._frames_received}')
         with lock:
+            is_messge -= 1
             if channel.is_open:
                 self.acknowledge_message(delivery_tag=delivery_tag)
             else:
@@ -213,16 +216,26 @@ class Rabbit1:
                 self._channel.stop_consuming(self._consumer_tag)
 
     def on_message(self, channel, method, properties, body):
-        if threads:
-            del threads[0]
+        # if threads:
+        #     del threads[0]
+        global is_messge
+        with self.app.lock:
+            is_messge += 1
         t = Thread1(target=self.do_work, args=(method.delivery_tag, channel, body))
         t.daemon = True
         t.start()
-        threads.append(t)
+        # threads.append(t)
 
     def acknowledge_message(self, delivery_tag):
         self.app.info_('send acknowledge')
         self._channel.basic_ack(delivery_tag)
+
+    def do_nothing(self, **kwargs):
+        _rabbit = kwargs['cls']
+        while True:
+            time.sleep(60)
+            if _rabbit._is_running and not is_messge:
+                _rabbit.app.info_('waiting for message')
 
 
 class ReconnectingRabbit:
@@ -231,6 +244,7 @@ class ReconnectingRabbit:
         self.app = app
         self.func = func
         self._rabbit = Rabbit1(self.app, self.func)
+        self._no_mess = None
         self._pause = 3
         self._timer_run = 0
         self._timer_stop = 0
@@ -240,6 +254,7 @@ class ReconnectingRabbit:
         while True:
             self._count += 1
             try:
+                self._no_mess = Thread2(target=self._rabbit.do_nothing, args=(), _rabbit=self._rabbit).start()
                 self._timer_run = time.time()
                 self._rabbit.run()
                 self.app.info_('starting rabbit')
@@ -269,6 +284,20 @@ class Thread1(threading.Thread):
 
     def wait_for_tstate_lock(self, block=True, timeout=-1):
         pass
+
+
+class Thread2(threading.Thread):
+    _instance = None
+    _rabbit = None
+
+    def __new__(cls, *args, **kwargs):
+        Thread2._rabbit = kwargs['_rabbit']
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def __init__(self, target, args, _rabbit):
+        threading.Thread.__init__(self, target=target, args=args, kwargs={'cls': self._rabbit}, daemon=True)
 
 
 if __name__ == '__main__':

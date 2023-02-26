@@ -10,6 +10,7 @@ keys_1 = ['prices', 'stocks', 'ratings', 'categories', 'attributes', 'attribute_
 keys_3 = ['analytics', 'transactions']
 all_keys = ['product_ids', 'prices', 'stocks', 'ratings', 'categories', 'attributes', 'attribute_values', 'analytics',
             'transactions']
+company_data_keys = ["ozon_client_id", "api_key", "user_id", "id"]
 
 
 def check_scenario(scenario):
@@ -46,3 +47,11 @@ def check_scenario(scenario):
 # from pprint import pprint
 #
 # pprint(check_scenario(a), sort_dicts=False)
+
+def check_company_data(company_data, result=True):
+    for key in company_data_keys:
+        if not company_data.get(key):
+            result=False
+    company_data['client_id'] = company_data.pop('ozon_client_id')
+    company_data['company_id'] = company_data.pop('id')
+    return result

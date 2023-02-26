@@ -2,6 +2,7 @@ import inspect
 import json
 import logging
 import os
+import time
 # import time
 from datetime import date, datetime
 # from datetime import timedelta
@@ -12,7 +13,6 @@ import requests
 from pathlib import Path
 from functools import wraps
 from dotenv import load_dotenv
-
 
 path = os.path.dirname(sys.modules['__main__'].__file__).replace('/libb', '')
 
@@ -38,7 +38,8 @@ def decorator1(function):
 
 def decorator2(function):
     def wrapper(*args, **kwargs):
-        typ, func = function(args[0])
+        app = args[0]
+        typ, func = function(app)
         file_path = inspect.stack()[1][1]
         if '\\' in file_path:
             file_name = file_path.split('\\')[-1]
@@ -49,7 +50,7 @@ def decorator2(function):
         try:
             text = ''.join("{} {}".format(x, '') for x in args[1:])
             func(text, exc_info=True) if typ == 'error' else func(text)
-            text = {"msg": f"{text:100.100}", "file": f"{file_name:20}",
+            text = {"time": f"{str(app.updated_at()):19.19}", "msg": f"{text:75.75}", "file": f"{file_name:20}",
                     "func": f"{func_name:25}", "level": f"{typ:7}"}
             text1 = json.dumps(text)
         except:
@@ -119,22 +120,25 @@ class App:
 
     def sms(self, text=None, lang='en', files=None):
         files = [] if files is None else files
-        if self.config.telegram['enable']:
-            try:
-                if self.config.telegram['token'] and self.config.telegram['channel_id']:
-                    if text is not None:
-                        if lang != 'en':
-                            text = text.encode("cp1251").decode("utf-8-sig", 'ignore')
-                        url = '{}{}{}'.format(self.config.telegram['url'], self.config.telegram['token'], "/sendMessage")
-                        requests.post(url, data={"chat_id": self.config.telegram['channel_id'], "text": text})
-                    if len(files) > 0:
-                        for f in files:
-                            file = {'document': open((path + "/log/" + f), 'rb')}
-                            url = '{}{}{}'.format(self.config.telegram['url'], self.config.telegram['token'], "/sendDocument")
-                            requests.post(url, files=file, data={"chat_id": self.config.telegram['channel_id']})
-            except Exception as e:
-                print(e)
-                self.error_('error sending a message in telegram')
+        if not self.config.telegram['enable']:
+            return
+        try:
+            if self.config.telegram['token'] and self.config.telegram['channel_id']:
+                if text is not None:
+                    if lang != 'en':
+                        text = text.encode("cp1251").decode("utf-8-sig", 'ignore')
+                    url = '{}{}{}'.format(self.config.telegram['url'], self.config.telegram['token'],
+                                          "/sendMessage")
+                    requests.post(url, data={"chat_id": self.config.telegram['channel_id'], "text": text})
+                if len(files) > 0:
+                    for f in files:
+                        file = {'document': open((path + "/log/" + f), 'rb')}
+                        url = '{}{}{}'.format(self.config.telegram['url'], self.config.telegram['token'],
+                                              "/sendDocument")
+                        requests.post(url, files=file, data={"chat_id": self.config.telegram['channel_id']})
+        except Exception as e:
+            print(e)
+            self.error_('error sending a message in telegram')
 
     def write_json_all(self, items, file_path, abs_path_=None, error=False):
         if abs_path_:
@@ -157,6 +161,9 @@ class App:
             if error:
                 print('error in read_json', e)
             return []
+
+    def updated_at(self):
+        return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 
     def name(self, var):
         callers_local_vars = inspect.currentframe().f_back.f_locals.items()
@@ -266,7 +273,7 @@ def load_config(self):
     if config:
         self.info_(f'config.json has been loaded')
     else:
-        self.info_(f'there are no config.json')
+        self.critical_('there are no config.json')
     return config
 
 
