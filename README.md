@@ -8,13 +8,15 @@ data_set = { 'company_data': {'ozon_client_id': '123456',
                                  'prices': True,
                                  'stocks': True,
                                  'analytics': {'metrics': [], 'period': 1, 'period_step_back': 1},
-                                 'transactions': {'period': 1, 'period_step_back': 1},
+                                 'transactions': {'date_from': "2022-12-10", 'date_to': "2022-12-11"},
                                  'ratings': True 
                                  'categories': True,
                                  'attributes': True,
                                  'attribute_values': True
                                   }
            } <br>
+
+
 где:
 <br> 'product_ids' - список int, по умолчанию пустой массив - это значит будут взяты все товары поставщика  <br>
 <br> для ключей 'prices', 'stocks', 'ratings', 'categories', 'attributes', 'attribute_values' правило работает следующим 
@@ -25,6 +27,9 @@ False  то он не выполняется, причем если в 'product_
 если хотите что бы была выполнена стандатрная процедура. где:
 <br>period - количество дней int, за которые нужно собрать данные,  по умолчанию 1 <br>
 <br>analytics: period_step_back - количество дней int, которые нужно отступить от сегодняшнего, по умолчанию 1 <br>
+<br> или напрямую указать даты 'date_from' дата начала  и 'date_to' дата конца периода в формате %Y-%m-%d (ГГГГ-ММ-ДД)<br>
+<br> прошу обратить внимание что по умолчанию берется 'date_from' и 'date_to' если присутствуют оба вида задания периода<br> 
+<br> так же интерварл не может быть больше чем 720 дней и 'date_from' строго меньше 'date_to'<br> 
 <br> 'metrics' ключ  если пустой массив или True  или отсутствует то умолчанию будут выполены следующие метрики 
  ["ordered_units", "cancellations", "returns", "revenue", "delivered_units"]
 если ключ равен 'metrics' False  то ключ 'analytics' выполнятся не будет !
@@ -32,6 +37,9 @@ False  то он не выполняется, причем если в 'product_
 <br> ключ 'transactions' передайте True  или  что тоже самое  {'period': 1, 'period_step_back': 1}, где:
 <br> period - количество дней int, за которые нужно собрать данные,  по умолчанию 1 <br>
 <br> period_step_back - количество дней int, которые нужно отступить от сегодняшнего, по умолчанию 1 <br>
+<br> или напрямую указать даты 'date_from' дата начала  и 'date_to' дата конца периода в формате %Y-%m-%d (ГГГГ-ММ-ДД)<br>
+<br> прошу обратить внимание что по умолчанию берется 'date_from' и 'date_to' если присутствуют оба вида задания периода<br> 
+<br> так же интерварл не может быть больше чем 720 дней и 'date_from' строго меньше 'date_to'<br> 
 если ключ равен 'transactions' False или пустой словарь {} или что то еще то ключ 'transactions' выполнятся не будет !
 
 <br>

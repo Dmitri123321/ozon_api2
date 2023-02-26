@@ -161,7 +161,7 @@ def send_items_transactions(app, items):
             app.error_('operation_id:', item['operation_id'])
 
 
-def send_items(app, ind, items, user_id, company_id):
+def send_items(app, ind, items, user_id, company_id, up_key=None):
     for item in items:
         try:
             if 'product_id' in item:
@@ -175,3 +175,34 @@ def send_items(app, ind, items, user_id, company_id):
             app.info_(f"Existing:{a}, modified:{b}, upserted:{c}, up_key:{up_key}")
         except:
             app.error_(f"'up_key:'{up_key}, user_id:{user_id}, company_id:{company_id}")
+
+
+def reform_analytics(self, analytics_data, products_data, metrics):
+    list1 = ['offer_id_short', 'offer_id', 'product_id', 'category_name', 'name', 'color', 'size', 'brand',
+             'vendor_size', 'common_card_id']
+    list2 = ['coming', 'present', 'reserved']
+    list3 = ['marketing_price', 'min_ozon_price', 'old_price', 'premium_price', 'price']
+    x = {'date': str(self.today), 'user_id': self.user_id, 'company_id': self.company_id,
+         'updated_at': self.updated_at}
+    analytics = []
+    anal_dict = {y['dimensions'][0]['id']: y['metrics'] for y in analytics_data}
+    for product in products_data:
+        analytic = {'updated_at': self.updated_at}
+        for key in list1:
+            analytic[key] = product[key] if key in product else None
+        for key in list2:
+            analytic[key] = product['stocks'][key] if key in product['stocks'] else 0
+        for key in list3:
+            analytic[key] = product['price'][key] if key in product['price'] else 0
+        error_metrics = []
+        for i, metric in enumerate(metrics):
+            try:
+                analytic[metric] = anal_dict[str(product['fbo_sku'])][i]
+            except:
+                error_metrics.append(metric)
+                analytic[metric] = None
+        if error_metrics:
+            self.app.warn_('error metrics:', *error_metrics, product['product_id'], self.company_id)
+        analytic.update(x)
+        analytics.append(analytic)
+    return analytics
