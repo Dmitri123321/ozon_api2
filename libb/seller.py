@@ -227,11 +227,16 @@ class Seller:
                 productic[key] = product['price'][key] if key in product['price'] else 0
             product_dict[str(product['fbo_sku'])] = productic
         analytics = []
+        bad = []
         for analy in analytics_data:
             if len(analy.get('dimensions', [])) == 2:
                 fbo_sku = analy['dimensions'][0]['id']
                 analytic = {'date': analy['dimensions'][1]['id']}
-                analytic.update(product_dict.get(fbo_sku, {}))
+                productic = product_dict.get(fbo_sku, {})
+                if not productic:
+                    bad.append(fbo_sku)
+                    continue
+                analytic.update(productic)
                 error_metrics = []
                 for i, metric in enumerate(metrics):
                     try:
