@@ -212,8 +212,8 @@ class Seller:
         return analytisc_data
 
     def reform_analytics(self, analytics_data, products_data, metrics):
-        list1 = ['offer_id_short', 'offer_id', 'product_id', 'category_name', 'name', 'color', 'size', 'brand',
-                 'vendor_size', 'common_card_id']
+        list1 = ['offer_id_short', 'offer_id', 'product_id', 'category_id', 'category_name', 'name', 'color', 'size',
+                 'brand', 'vendor_size', 'common_card_id']
         list2 = ['coming', 'present', 'reserved']
         list3 = ['marketing_price', 'min_ozon_price', 'old_price', 'premium_price', 'price']
         product_dict = {}
